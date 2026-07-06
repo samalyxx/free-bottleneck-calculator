@@ -14,7 +14,7 @@ export function assetPrefix(depth) {
   return depth > 0 ? "../".repeat(depth) : "./";
 }
 
-export function renderHead({ title, description, canonical, depth = 0, ogType = "website", jsonLd = [] }) {
+export function renderHead({ title, description, canonical, depth = 0, ogType = "website", jsonLd = [], keywords = "" }) {
   const prefix = assetPrefix(depth);
   const canonicalUrl = canonical || SITE_URL + "/";
   const blocks = Array.isArray(jsonLd) ? jsonLd : [jsonLd];
@@ -22,6 +22,9 @@ export function renderHead({ title, description, canonical, depth = 0, ogType = 
     .filter(Boolean)
     .map((obj) => `  <script type="application/ld+json">\n${JSON.stringify(obj, null, 2)}\n  </script>`)
     .join("\n");
+  const keywordsMeta = keywords
+    ? `\n  <meta name="keywords" content="${escapeHtml(keywords)}">`
+    : "";
 
   return `<!doctype html>
 <html lang="en">
@@ -29,7 +32,7 @@ export function renderHead({ title, description, canonical, depth = 0, ogType = 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(title)}</title>
-  <meta name="description" content="${escapeHtml(description)}">
+  <meta name="description" content="${escapeHtml(description)}">${keywordsMeta}
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="${escapeHtml(canonicalUrl)}">
   <meta name="theme-color" content="#0055ff">
@@ -108,8 +111,8 @@ export function renderFooter({ depth = 0 }) {
   </footer>`;
 }
 
-export function renderPageShell({ title, description, canonical, depth = 0, ogType, jsonLd, body, scripts = "" }) {
-  return `${renderHead({ title, description, canonical, depth, ogType, jsonLd })}
+export function renderPageShell({ title, description, canonical, depth = 0, ogType, jsonLd, body, scripts = "", keywords = "" }) {
+  return `${renderHead({ title, description, canonical, depth, ogType, jsonLd, keywords })}
 <body class="flex flex-col min-h-screen">
 ${renderHeader({ depth })}
 ${body}

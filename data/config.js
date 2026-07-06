@@ -133,6 +133,5 @@ window.CONFIG = {
     minSamplesMedium: 5
   },
 
-  storageKey: "bottleneck-build-v2",
   themeKey: "bottleneck-theme"
 };

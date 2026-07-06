@@ -100,4 +100,4 @@ window.__bottleneckTrack = function(event, data) {
 };
 ```
 
-Events: `page_load`, `calculate`, `preset_apply`, `theme_toggle`, `share_copy`.
+Events: `page_load`, `calculate`, `preset_apply`, `theme_toggle`.

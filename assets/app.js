@@ -15,11 +15,27 @@
     vendorUpscaling,
     buildPresets,
     confidence: confidenceCfg,
-    storageKey,
     themeKey
   } = cfg;
 
   const RESOLUTIONS = ["1080p", "1440p", "4k", "ultrawide"];
+  const STATE_KEYS = [
+    "cpu",
+    "gpu",
+    "resolution",
+    "purpose",
+    "ramAmount",
+    "ramSpeed",
+    "ramChannel",
+    "storage",
+    "rt",
+    "upscaling",
+    "compare",
+    "cpuB",
+    "gpuB",
+    "resolutionB",
+    "purposeB"
+  ];
 
   function clamp(num, min, max) {
     return Math.min(max, Math.max(min, num));
@@ -521,41 +537,29 @@
     }
   }
 
-  function serializeState() {
-    const buildA = readBuildForm("");
-    const buildB = readBuildForm("b");
-    const compare = document.getElementById("compareMode").checked;
-    return { ...buildA, compare: compare ? "1" : "0", cpuB: buildB.cpu, gpuB: buildB.gpu, resolutionB: buildB.resolution, purposeB: buildB.purpose };
+  function getDefaultState() {
+    return { ...defaults, resolution: "1440p", purpose: "aaa", ramAmount: "16", ramSpeed: "3200", ramChannel: "dual", storage: "nvme3", rt: "off", upscaling: "off", compare: "0" };
   }
 
-  function saveState() {
-    const state = serializeState();
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(state));
-    } catch (_) {}
-    const params = new URLSearchParams();
-    Object.entries(state).forEach(([k, v]) => {
-      if (v != null && v !== "") params.set(k, v);
+  function cleanIncomingStateUrl() {
+    const params = new URLSearchParams(location.search);
+    const hash = location.hash.slice(1);
+    const hashParams = new URLSearchParams(hash.startsWith("calculator?") ? hash.slice("calculator?".length) : hash);
+    const hasStateQuery = STATE_KEYS.some((key) => params.has(key));
+    const hasStateHash = hash.includes("=") && STATE_KEYS.some((key) => hashParams.has(key));
+    if (!hasStateQuery && !hasStateHash) return;
+
+    STATE_KEYS.forEach((key) => {
+      params.delete(key);
     });
-    history.replaceState(null, "", "#" + params.toString());
+    const query = params.toString();
+    const cleanHash = hasStateHash || !location.hash ? "#calculator" : location.hash;
+    history.replaceState(null, "", `${location.pathname}${query ? `?${query}` : ""}${cleanHash}`);
   }
 
-  function loadState() {
-    let data = null;
-    if (location.hash.length > 1) {
-      data = Object.fromEntries(new URLSearchParams(location.hash.slice(1)));
-    } else {
-      try {
-        const stored = localStorage.getItem(storageKey);
-        if (stored) data = JSON.parse(stored);
-      } catch (_) {}
-    }
-    if (!data) data = { ...defaults, resolution: "1440p", purpose: "aaa", ramAmount: "16", ramSpeed: "3200", ramChannel: "dual", storage: "nvme3", rt: "off", upscaling: "off", compare: "0" };
-    applyBuildForm(data, "");
-    if (data.cpuB) {
-      applyBuildForm({ cpu: data.cpuB, gpu: data.gpuB, resolution: data.resolutionB || data.resolution, purpose: data.purposeB || data.purpose }, "b");
-    }
-    return data;
+  function resetCalculatorState() {
+    applyBuildForm(getDefaultState(), "");
+    cleanIncomingStateUrl();
   }
 
   function updateSeo(result) {
@@ -591,7 +595,6 @@
     }
     updateSeo(resultA);
 
-    saveState();
     track("calculate", { limiter: resultA?.limiter, gap: resultA?.top?.value, compare: compareOn });
   }
 
@@ -626,18 +629,6 @@
     applyTheme(next);
     localStorage.setItem(themeKey, next);
     track("theme_toggle", { theme: next });
-  }
-
-  function copyShareLink() {
-    const url = location.href.split("#")[0] + location.hash;
-    navigator.clipboard?.writeText(url).then(() => {
-      const btn = document.getElementById("copyLink");
-      if (btn) {
-        btn.textContent = "Copied!";
-        setTimeout(() => { btn.textContent = "Copy share link"; }, 2000);
-      }
-    });
-    track("share_copy", {});
   }
 
   const comboboxes = {};
@@ -720,7 +711,7 @@
     initTheme();
     initMobileNav();
     initComboboxes();
-    loadState();
+    resetCalculatorState();
     toggleCompareUI();
     initPresets();
     initPopularPairings();
@@ -728,7 +719,6 @@
     document.getElementById("buildBFields")?.addEventListener("input", runCalculation);
     document.getElementById("compareMode")?.addEventListener("change", toggleCompareUI);
     document.getElementById("themeToggle")?.addEventListener("click", toggleTheme);
-    document.getElementById("copyLink")?.addEventListener("click", copyShareLink);
     runCalculation();
     track("page_load", {});
   }

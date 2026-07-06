@@ -50,14 +50,6 @@ function computePair(cpu, gpu, resolution) {
   return { predicted: Math.round(predicted), onePercentLow, limiter, gap, cpuCeiling: Math.round(cpuCeiling), gpuCeiling: Math.round(gpuCeiling) };
 }
 
-function buildHash(cpu, gpu, resolution) {
-  const params = new URLSearchParams({
-    cpu, gpu, resolution, purpose: "aaa", ramAmount: "16", ramSpeed: "3200",
-    ramChannel: "dual", storage: "nvme3", rt: "off", upscaling: "off", compare: "0"
-  });
-  return "#" + params.toString();
-}
-
 function resLabel(resolution) {
   if (resolution === "4k") return "4K";
   if (resolution === "ultrawide") return "3440x1440 ultrawide";
@@ -76,7 +68,7 @@ function renderPage(cpu, gpu, resolution, result) {
   const res = resLabel(resolution);
   const title = `${cpu.name} + ${gpu.name} Bottleneck at ${res}`;
   const desc = `${cpu.name} and ${gpu.name} bottleneck analysis at ${res}. Estimated ~${result.predicted} FPS average, ~${result.onePercentLow} FPS 1% low, ${result.limiter}-limited with ${result.gap}% gap.`;
-  const calcUrl = `../../index.html${buildHash(cpu.name, gpu.name, resolution)}`;
+  const calcUrl = "../../index.html#calculator";
   const canonical = `${SITE_URL}/build/${slug}/`;
 
   const faq = [

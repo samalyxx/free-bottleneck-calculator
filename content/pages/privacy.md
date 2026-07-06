@@ -25,14 +25,9 @@ When you use the calculator, you select hardware components and settings. This i
 
 The site may store the following in your browser's **local storage**:
 
-- Your last calculator configuration (CPU, GPU, resolution, etc.)
 - Dark/light theme preference
 
 This data stays on your device. You can clear it by clearing your browser's site data.
-
-### Share links
-
-When you copy a share link, your build settings are encoded in the URL hash. Anyone with that link can see those settings. Do not share links if you prefer not to disclose your configuration.
 
 ### Analytics
 
@@ -44,7 +39,7 @@ Our hosting provider (Netlify) may log standard web server data including IP add
 
 ## Cookies
 
-We do not use advertising cookies. Theme and calculator preferences may be stored via local storage, which is similar to a cookie but remains in your browser until cleared.
+We do not use advertising cookies. Theme preference may be stored via local storage, which is similar to a cookie but remains in your browser until cleared.
 
 ## Third-party services
 

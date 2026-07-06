@@ -38,6 +38,8 @@ function readPosts() {
         description: data.description,
         date,
         tags: data.tags || [],
+        keywords: data.keywords || "",
+        faq: data.faq || [],
         content,
         html: marked.parse(content)
       };
@@ -85,6 +87,22 @@ function breadcrumbJsonLd(post) {
   };
 }
 
+function faqJsonLd(post) {
+  if (!post.faq?.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: post.faq.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer
+      }
+    }))
+  };
+}
+
 function renderPostPage(post, allPosts) {
   const canonical = `${SITE_URL}/blog/${post.slug}/`;
   const related = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
@@ -123,7 +141,8 @@ function renderPostPage(post, allPosts) {
     canonical,
     depth: 2,
     ogType: "article",
-    jsonLd: [articleJsonLd(post), breadcrumbJsonLd(post)],
+    jsonLd: [articleJsonLd(post), breadcrumbJsonLd(post), faqJsonLd(post)].filter(Boolean),
+    keywords: post.keywords,
     body,
     scripts: `<script src="../../assets/theme.js" defer></script>`
   });

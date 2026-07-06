@@ -87,6 +87,9 @@ function testBlogPages() {
     assert(html.includes('rel="canonical"'), `${file} has canonical`);
     assert(!html.includes("example.com"), `${file} no example.com`);
   }
+  const samplePost = fs.readFileSync(path.join(blogDir, "what-is-cpu-bottleneck/index.html"), "utf8");
+  assert(samplePost.includes('meta name="keywords"'), "blog post has keywords meta");
+  assert(samplePost.includes("FAQPage"), "blog post has FAQPage JSON-LD");
 }
 
 function testBuildPages() {
