@@ -1,0 +1,24 @@
+{
+  "name": "free-bottleneck-calculator",
+  "version": "5.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Free PC bottleneck calculator with CI-driven data pipeline and SEO content",
+  "scripts": {
+    "seed:csv": "node scripts/seed-csv.mjs",
+    "enrich": "node scripts/enrich-specs.mjs",
+    "build:data": "node scripts/build-data.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "build:blog": "node scripts/build-blog.mjs",
+    "build:info": "node scripts/build-info-pages.mjs",
+    "build:sitemap": "node scripts/build-sitemap.mjs",
+    "build:css": "tailwindcss -i ./assets/input.css -o ./assets/styles.css --minify",
+    "build": "npm run build:css && npm run build:data && npm run build:pages && npm run build:blog && npm run build:info && npm run build:sitemap",
+    "test": "node test/data-integrity.test.js && node test/seo.test.js"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.7",
+    "tailwindcss": "^3.4.17"
+  }
+}

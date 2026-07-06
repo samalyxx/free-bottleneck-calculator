@@ -1,0 +1,71 @@
+name,brand,year,cores,threads,tier,x3d,fps1080p,fps1440p,fps4k,fpsUltrawide,low1Ratio,source,sampleCount,lastVerified
+AMD Ryzen 9 9950X3D,AMD,2025,16,32,enthusiast,true,278,256,236,250,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 9900X3D,AMD,2025,12,24,enthusiast,true,272,250,231,245,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 9800X3D,AMD,2024,8,16,enthusiast,true,280,258,238,252,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 9950X,AMD,2024,16,32,high-end,false,218,201,185,196,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 9900X,AMD,2024,12,24,high-end,false,212,195,180,191,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 9700X,AMD,2024,8,16,performance,false,215,198,183,194,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 9600X,AMD,2024,6,12,performance,false,208,191,177,187,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 7950X3D,AMD,2023,16,32,enthusiast,true,265,244,225,239,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 7900X3D,AMD,2023,12,24,enthusiast,true,258,237,219,232,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 7800X3D,AMD,2023,8,16,enthusiast,true,255,235,217,230,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 7950X,AMD,2022,16,32,high-end,false,205,189,174,185,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 7900X,AMD,2022,12,24,high-end,false,200,184,170,180,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 7700X,AMD,2022,8,16,performance,false,198,182,168,178,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 7600X,AMD,2022,6,12,performance,false,195,179,166,176,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 7600,AMD,2023,6,12,mainstream,false,192,177,163,173,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 5950X3D,AMD,2023,16,32,enthusiast,true,240,221,204,216,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 5800X3D,AMD,2022,8,16,performance,true,230,212,196,207,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 5700X3D,AMD,2024,8,16,performance,true,225,207,191,203,0.82,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 5950X,AMD,2020,16,32,high-end,false,175,161,149,158,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 5900X,AMD,2020,12,24,performance,false,172,158,146,155,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 5800X,AMD,2020,8,16,mainstream,false,168,155,143,151,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 5700X,AMD,2022,8,16,mainstream,false,165,152,140,149,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 5600X,AMD,2020,6,12,mainstream,false,175,161,149,158,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 5600,AMD,2022,6,12,mainstream,false,170,156,145,153,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 5500,AMD,2022,6,12,budget,false,155,143,132,140,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 9 3900X,AMD,2019,12,24,mainstream,false,155,143,132,140,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 7 3700X,AMD,2019,8,16,budget,false,148,136,126,133,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 3600,AMD,2019,6,12,budget,false,145,133,123,131,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 5 3600X,AMD,2019,6,12,budget,false,148,136,126,133,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 3 3300X,AMD,2020,4,8,entry,false,130,120,111,117,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Ryzen 3 3100,AMD,2020,4,8,entry,false,120,110,102,108,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core Ultra 9 285K,Intel,2024,24,24,high-end,false,210,193,179,189,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core Ultra 7 265K,Intel,2024,20,20,performance,false,198,182,168,178,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core Ultra 5 245K,Intel,2024,14,14,mainstream,false,185,170,157,167,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core Ultra 5 235,Intel,2025,14,14,mainstream,false,180,166,153,162,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core Ultra 5 225F,Intel,2025,10,10,budget,false,172,158,146,155,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-14900KS,Intel,2024,24,32,enthusiast,false,220,202,187,198,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-14900K,Intel,2023,24,32,enthusiast,false,215,198,183,194,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-14900F,Intel,2023,24,32,high-end,false,212,195,180,191,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-14700K,Intel,2023,20,28,high-end,false,205,189,174,185,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-14700F,Intel,2023,20,28,performance,false,200,184,170,180,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-14600K,Intel,2023,14,20,performance,false,195,179,166,176,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-14600F,Intel,2024,14,20,mainstream,false,190,175,162,171,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-14400F,Intel,2024,10,16,mainstream,false,178,164,151,160,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-13900KS,Intel,2023,24,32,enthusiast,false,212,195,180,191,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-13900K,Intel,2022,24,32,enthusiast,false,208,191,177,187,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-13700K,Intel,2022,16,24,high-end,false,198,182,168,178,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-13600K,Intel,2022,14,20,performance,false,188,173,160,169,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-13400F,Intel,2023,10,16,mainstream,false,172,158,146,155,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i3-13100F,Intel,2023,4,8,budget,false,135,124,115,122,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-12900KS,Intel,2022,16,24,high-end,false,195,179,166,176,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-12900K,Intel,2021,16,24,high-end,false,190,175,162,171,0.76,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-12700K,Intel,2021,12,20,performance,false,180,166,153,162,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-12600K,Intel,2021,10,16,mainstream,false,172,158,146,155,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-12400F,Intel,2022,6,12,mainstream,false,165,152,140,149,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i3-12100F,Intel,2022,4,8,budget,false,130,120,111,117,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-11900K,Intel,2021,8,16,mainstream,false,158,145,134,142,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-11700K,Intel,2021,8,16,mainstream,false,152,140,129,137,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-11400F,Intel,2021,6,12,budget,false,140,129,119,126,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-10900K,Intel,2020,10,20,mainstream,false,155,143,132,140,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-10700K,Intel,2020,8,16,mainstream,false,148,136,126,133,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-10600K,Intel,2020,6,12,budget,false,138,127,117,124,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-10400F,Intel,2020,6,12,budget,false,132,121,112,119,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i3-10100F,Intel,2020,4,8,entry,false,115,106,98,104,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i9-9900K,Intel,2018,8,16,mainstream,false,142,131,121,128,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-9700K,Intel,2018,8,8,budget,false,135,124,115,122,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-9600K,Intel,2018,6,6,budget,false,128,118,109,115,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-9400F,Intel,2019,6,6,entry,false,118,109,100,106,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i7-8700K,Intel,2017,6,12,entry,false,125,115,106,113,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Core i5-8400,Intel,2017,6,6,entry,false,112,103,95,101,0.68,curated-benchmark-anchors,12,2026-07-06

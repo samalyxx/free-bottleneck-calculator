@@ -3,404 +3,53 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free PC Bottleneck Calculator for Gaming | CPU GPU RAM Storage Check</title>
-  <meta name="description" content="Estimate likely CPU, GPU, RAM, and storage bottlenecks for a gaming PC. Choose your parts, resolution, memory, storage, and purpose to get a clear upgrade-focused result.">
+  <title>Free Bottleneck Calculator for Gaming | Will It Bottleneck?</title>
+  <meta name="description" content="Free bottleneck calculator for gaming. Check CPU, GPU, RAM, and storage bottlenecks instantly. Estimate FPS, 1% lows, and upgrade advice. Updated through June 2026.">
+  <meta name="keywords" content="bottleneck calculator, CPU bottleneck, GPU bottleneck, PC performance, gaming PC, hardware compatibility">
   <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://example.com/">
+  <link rel="canonical" href="https://freebottleneckcalculator.com/">
+  <meta name="theme-color" content="#0055ff">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Free PC Bottleneck Calculator">
   <meta property="og:title" content="Free PC Bottleneck Calculator for Gaming">
-  <meta property="og:description" content="Check whether your CPU, GPU, RAM, or storage is most likely to limit your PC gaming experience.">
-  <meta property="og:url" content="https://example.com/">
+  <meta property="og:description" content="Check whether your CPU, GPU, RAM, or storage is most likely to limit your PC gaming experience. Hardware database updated through June 2026.">
+  <meta property="og:url" content="https://freebottleneckcalculator.com/">
+  <meta property="og:image" content="https://freebottleneckcalculator.com/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <style>
-    :root {
-      --bg: #f6f8fb;
-      --panel: #ffffff;
-      --ink: #16202a;
-      --muted: #596978;
-      --line: #d9e1ea;
-      --accent: #0b6f8f;
-      --accent-2: #c04d37;
-      --good: #237a57;
-      --warn: #b46a05;
-      --bad: #b3261e;
-      --chip: #ecf3f7;
-      --shadow: 0 10px 30px rgba(21, 36, 51, .08);
-      color-scheme: light;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  <meta name="twitter:title" content="Free PC Bottleneck Calculator for Gaming">
+  <meta name="twitter:description" content="Instant CPU and GPU bottleneck analysis with FPS estimates for 1080p, 1440p, and 4K gaming builds.">
+  <meta name="twitter:image" content="https://freebottleneckcalculator.com/assets/og-image.png">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Free PC Bottleneck Calculator",
+    "url": "https://freebottleneckcalculator.com/",
+    "description": "Free browser-based PC bottleneck calculator for gaming builds.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://freebottleneckcalculator.com/#calculator?cpu={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 8% 0%, rgba(11, 111, 143, .08), transparent 28rem),
-        linear-gradient(180deg, #fbfcfe 0%, var(--bg) 44rem);
-      color: var(--ink);
-      line-height: 1.5;
-    }
-
-    a { color: var(--accent); }
-
-    .wrap {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 22px 0;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, .8);
-      backdrop-filter: blur(10px);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: 0;
-    }
-
-    .mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 8px;
-      background: conic-gradient(from 210deg, #0b6f8f, #2d9a73, #e0a526, #c04d37, #0b6f8f);
-      position: relative;
-      box-shadow: inset 0 0 0 5px #fff, 0 3px 10px rgba(0, 0, 0, .12);
-    }
-
-    .mark::after {
-      content: "";
-      width: 10px;
-      height: 10px;
-      background: var(--ink);
-      border-radius: 2px;
-      position: absolute;
-      left: 14px;
-      top: 14px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      font-size: .95rem;
-    }
-
-    .hero {
-      padding: 54px 0 28px;
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
-      gap: 32px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      color: var(--accent);
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: .78rem;
-      letter-spacing: .08em;
-      margin: 0 0 10px;
-    }
-
-    h1, h2, h3 { line-height: 1.12; letter-spacing: 0; }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4.6rem);
-      margin: 0;
-      max-width: 10ch;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 1.12rem;
-      max-width: 62ch;
-      margin: 20px 0 0;
-    }
-
-    .hero-visual {
-      min-height: 320px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #101820;
-      color: #eaf2f8;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-      display: grid;
-      place-items: center;
-    }
-
-    .board {
-      width: min(86%, 430px);
-      aspect-ratio: 1.28 / 1;
-      border: 2px solid rgba(234, 242, 248, .28);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 26px 26px,
-        linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 26px 26px,
-        #17303a;
-      position: relative;
-      padding: 28px;
-    }
-
-    .cpu-block, .gpu-block, .ram-stick, .ssd-stick {
-      position: absolute;
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 6px;
-      background: rgba(255,255,255,.12);
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: .82rem;
-    }
-
-    .cpu-block { width: 112px; height: 112px; left: 42px; top: 48px; }
-    .gpu-block { width: 202px; height: 72px; right: 34px; bottom: 54px; }
-    .ram-stick { width: 24px; height: 168px; right: 76px; top: 34px; writing-mode: vertical-rl; }
-    .ssd-stick { width: 128px; height: 30px; left: 62px; bottom: 62px; }
-
-    .trace {
-      position: absolute;
-      height: 3px;
-      background: #58c2a2;
-      transform-origin: left center;
-      opacity: .9;
-    }
-
-    .t1 { width: 112px; left: 154px; top: 102px; }
-    .t2 { width: 116px; left: 205px; bottom: 90px; }
-    .t3 { width: 70px; right: 88px; top: 210px; transform: rotate(90deg); }
-
-    main { padding-bottom: 60px; }
-
-    .app-grid {
-      display: grid;
-      grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
-      gap: 22px;
-      align-items: start;
-      margin-top: 18px;
-    }
-
-    .panel {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-
-    .controls {
-      padding: 22px;
-      position: sticky;
-      top: 88px;
-    }
-
-    .field {
-      display: grid;
-      gap: 7px;
-      margin-bottom: 15px;
-    }
-
-    label {
-      font-weight: 750;
-      font-size: .92rem;
-    }
-
-    select, input {
-      width: 100%;
-      min-height: 44px;
-      border: 1px solid #c7d2df;
-      border-radius: 7px;
-      padding: 10px 12px;
-      color: var(--ink);
-      background: #fff;
-      font: inherit;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .result {
-      padding: 24px;
-      min-height: 560px;
-    }
-
-    .result-top {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 170px;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .score-ring {
-      width: 156px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: conic-gradient(var(--accent-2) var(--score-deg), #e8eef4 0deg);
-      position: relative;
-      justify-self: end;
-    }
-
-    .score-ring::before {
-      content: "";
-      position: absolute;
-      inset: 12px;
-      border-radius: 50%;
-      background: #fff;
-    }
-
-    .score-ring span {
-      position: relative;
-      z-index: 1;
-      font-size: 2.1rem;
-      font-weight: 900;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 14px 0 0;
-    }
-
-    .tag {
-      background: var(--chip);
-      border: 1px solid #d5e4eb;
-      border-radius: 999px;
-      padding: 6px 10px;
-      color: #29414d;
-      font-size: .86rem;
-      font-weight: 700;
-    }
-
-    .bars { margin-top: 24px; display: grid; gap: 12px; }
-
-    .bar {
-      display: grid;
-      grid-template-columns: 86px minmax(0, 1fr) 48px;
-      gap: 12px;
-      align-items: center;
-      font-size: .92rem;
-    }
-
-    .track {
-      height: 14px;
-      border-radius: 999px;
-      background: #e7edf3;
-      overflow: hidden;
-    }
-
-    .fill {
-      height: 100%;
-      width: var(--w);
-      border-radius: inherit;
-      background: var(--accent);
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 16px;
-      background: #fbfdff;
-    }
-
-    .card h3, .content h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-
-    .card p, .content p, .content li {
-      color: var(--muted);
-      margin-top: 0;
-    }
-
-    .content {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .content .panel {
-      padding: 20px;
-      box-shadow: none;
-    }
-
-    .wide {
-      grid-column: 1 / -1;
-    }
-
-    .method-list {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      padding-left: 0;
-      list-style: none;
-      margin: 14px 0 0;
-    }
-
-    .method-list li {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      padding: 14px;
-      background: #fff;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 24px 0 42px;
-      color: var(--muted);
-      font-size: .92rem;
-    }
-
-    @media (max-width: 900px) {
-      header { position: static; }
-      .hero, .app-grid, .content { grid-template-columns: 1fr; }
-      .controls { position: static; }
-      h1 { max-width: 12ch; }
-      .method-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 620px) {
-      .wrap { width: min(100% - 22px, 1180px); }
-      .nav-links { display: none; }
-      .hero { padding-top: 34px; }
-      .hero-visual { min-height: 250px; }
-      .board { width: 92%; }
-      .cpu-block { width: 82px; height: 82px; }
-      .gpu-block { width: 146px; height: 58px; }
-      .ram-stick { height: 122px; right: 46px; }
-      .ssd-stick { width: 94px; }
-      .split, .result-top, .cards, .method-list { grid-template-columns: 1fr; }
-      .score-ring { justify-self: start; }
-      .bar { grid-template-columns: 74px minmax(0, 1fr) 42px; }
-    }
-  </style>
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Free PC Bottleneck Calculator",
+    "url": "https://freebottleneckcalculator.com/",
+    "logo": "https://freebottleneckcalculator.com/assets/og-image.png"
+  }
+  </script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -409,440 +58,442 @@
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Any",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "description": "A free browser-based calculator that estimates likely CPU, GPU, RAM, and storage bottlenecks for gaming PCs."
+    "description": "A free browser-based calculator that estimates likely CPU, GPU, RAM, and storage bottlenecks for gaming PCs using per-resolution FPS modeling. Hardware database updated through June 2026."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is a bottleneck always bad?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Every PC has a limiting component in a given game. A good bottleneck is often the GPU at your target resolution because that means visual settings are using the graphics card fully." }
+      },
+      {
+        "@type": "Question",
+        "name": "What bottleneck percentage is acceptable?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Small gaps are normal. Treat results below about 10% as broadly balanced, 10-25% as worth checking against your games, and larger gaps as a stronger upgrade signal." }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I upgrade CPU or GPU first?",
+        "acceptedAnswer": { "@type": "Answer", "text": "For 1440p and 4K, GPU upgrades usually matter most. For 1080p high-refresh esports, simulation games, and streaming, CPU and RAM choices matter more than they do in GPU-bound AAA gaming." }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is this calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It uses real benchmark-derived FPS anchors per CPU and per GPU resolution, but individual games vary widely. Treat the estimated FPS and bottleneck percentage as a planning guide. Always confirm with game-specific benchmarks before buying hardware." }
+      },
+      {
+        "@type": "Question",
+        "name": "Which hardware is included?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The database covers NVIDIA GTX 10 through RTX 50, AMD RX 500 through RX 9000, Intel Arc A and B series, Intel 8th-gen through Core Ultra 200S, and AMD Ryzen 2000 through Ryzen 9000 including X3D variants, updated through June 2026." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a CPU bottleneck?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A CPU bottleneck occurs when your processor cannot prepare frames fast enough for your graphics card. The GPU sits idle, and FPS is capped by CPU performance. This is most common at 1080p with high-end GPUs or in CPU-heavy games like simulators and esports titles." }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a GPU bottleneck?",
+        "acceptedAnswer": { "@type": "Answer", "text": "A GPU bottleneck means your graphics card is fully utilized while the CPU still has headroom. This is normal and often desirable at 1440p and 4K, where you want the GPU working at maximum capacity for the best visuals." }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use a bottleneck calculator?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Select your CPU, GPU, screen resolution, RAM configuration, and gaming purpose. The calculator compares CPU and GPU performance ceilings, estimates FPS and bottleneck percentage, and tells you which component to upgrade first." }
+      },
+      {
+        "@type": "Question",
+        "name": "Does RAM cause bottlenecks?",
+        "acceptedAnswer": { "@type": "Answer", "text": "RAM rarely limits average FPS but causes stutter and 1% low drops. Single-channel memory, 8 GB capacity, or slow DDR4 without XMP can make a balanced build feel worse. Use dual-channel RAM with at least 16 GB for modern gaming." }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a bottleneck calculator be wrong?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes, for specific games or unusual settings. Calculators use benchmark averages across a game basket. Always verify results with game-specific benchmarks before making expensive upgrade decisions." }
+      }
+    ]
   }
   </script>
 </head>
-<body>
-  <header>
-    <nav class="wrap" aria-label="Primary navigation">
-      <div class="brand"><span class="mark" aria-hidden="true"></span><span>PC Bottleneck Calculator</span></div>
-      <div class="nav-links">
-        <a href="#calculator">Calculator</a>
-        <a href="#methodology">Methodology</a>
-        <a href="#faq">FAQ</a>
+<body class="flex flex-col min-h-screen">
+  <header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50">
+    <nav class="site-wrap flex flex-wrap items-center justify-between gap-3 h-16" aria-label="Primary navigation">
+      <a class="font-bold text-primary flex items-center gap-2 no-underline text-on-surface" href="./">
+        <span class="material-symbols-outlined material-symbols-filled text-primary-container">memory</span>
+        <span class="text-lg tracking-tight uppercase">PC Bottleneck</span>
+      </a>
+      <div class="flex items-center gap-3 flex-wrap w-full sm:w-auto justify-between sm:justify-end">
+        <button type="button" class="nav-toggle btn-secondary md:hidden" aria-expanded="false" aria-controls="primaryNav">Menu</button>
+        <div class="nav-links hidden md:flex items-center gap-6 w-full md:w-auto flex-col md:flex-row" id="primaryNav">
+          <a class="nav-link nav-link-active" href="#calculator">Calculator</a>
+          <a class="nav-link" href="blog/">Guides</a>
+          <a class="nav-link" href="#popular">Popular Builds</a>
+          <a class="nav-link" href="#methodology">Methodology</a>
+          <a class="nav-link" href="#faq">FAQ</a>
+        </div>
+        <button type="button" id="themeToggle" class="btn-secondary" aria-label="Toggle dark mode">Dark mode</button>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero wrap">
-      <div>
-        <p class="eyebrow">Free gaming PC tool</p>
-        <h1>PC Bottleneck Calculator</h1>
-        <p class="lead">Choose a CPU, GPU, resolution, RAM configuration, storage type, and workload to estimate which component is most likely to hold back real-world gaming performance.</p>
-      </div>
-      <div class="hero-visual" aria-label="Stylized PC motherboard showing CPU, GPU, RAM, and storage components">
-        <div class="board">
-          <div class="trace t1"></div>
-          <div class="trace t2"></div>
-          <div class="trace t3"></div>
-          <div class="cpu-block">CPU</div>
-          <div class="gpu-block">GPU</div>
-          <div class="ram-stick">RAM</div>
-          <div class="ssd-stick">SSD</div>
-        </div>
-      </div>
+  <main class="flex-grow">
+    <section class="site-wrap py-10 md:py-12 border-b border-surface-container-highest">
+      <p class="section-eyebrow">Free gaming PC tool</p>
+      <h1 class="text-3xl md:text-5xl font-semibold text-on-surface tracking-tight mb-3">Free PC Bottleneck Calculator</h1>
+      <p class="text-base md:text-lg text-on-surface-variant max-w-2xl leading-relaxed">
+        Analyze system performance constraints with precision. Estimate CPU, GPU, RAM, and storage bottlenecks based on component synergy, resolution, and workload. Hardware database updated through June 2026.
+      </p>
     </section>
 
-    <section id="calculator" class="wrap app-grid" aria-label="PC bottleneck calculator">
-      <form class="panel controls" id="buildForm">
-        <div class="field">
-          <label for="cpu">CPU</label>
-          <select id="cpu" name="cpu"></select>
-        </div>
-        <div class="field">
-          <label for="gpu">GPU</label>
-          <select id="gpu" name="gpu"></select>
-        </div>
-        <div class="split">
-          <div class="field">
-            <label for="resolution">Resolution</label>
-            <select id="resolution" name="resolution">
-              <option value="1080p">1920 x 1080</option>
-              <option value="1440p" selected>2560 x 1440</option>
-              <option value="4k">3840 x 2160</option>
-              <option value="ultrawide">3440 x 1440</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="purpose">Purpose</label>
-            <select id="purpose" name="purpose">
-              <option value="esports">Esports / high FPS</option>
-              <option value="aaa" selected>AAA gaming</option>
-              <option value="streaming">Gaming + streaming</option>
-              <option value="creation">Gaming + creator apps</option>
-            </select>
-          </div>
-        </div>
-        <div class="split">
-          <div class="field">
-            <label for="ramAmount">RAM amount</label>
-            <select id="ramAmount" name="ramAmount">
-              <option value="8">8 GB</option>
-              <option value="16" selected>16 GB</option>
-              <option value="32">32 GB</option>
-              <option value="64">64 GB</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="ramSpeed">RAM speed</label>
-            <select id="ramSpeed" name="ramSpeed">
-              <option value="2666">DDR4-2666</option>
-              <option value="3200" selected>DDR4-3200</option>
-              <option value="3600">DDR4-3600</option>
-              <option value="5200">DDR5-5200</option>
-              <option value="6000">DDR5-6000</option>
-              <option value="7200">DDR5-7200</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="storage">Storage</label>
-          <select id="storage" name="storage">
-            <option value="hdd">Hard drive</option>
-            <option value="sata">SATA SSD</option>
-            <option value="nvme3" selected>PCIe 3.0 NVMe SSD</option>
-            <option value="nvme4">PCIe 4.0 NVMe SSD</option>
-            <option value="nvme5">PCIe 5.0 NVMe SSD</option>
-          </select>
-        </div>
-      </form>
-
-      <section class="panel result" aria-live="polite">
-        <div class="result-top">
+    <section id="calculator" class="site-wrap py-10 md:py-12" aria-label="PC bottleneck calculator">
+      <div id="singleLayout" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <form class="lg:col-span-5 panel-card p-6" id="buildForm">
+          <h2 class="text-xl font-semibold text-on-surface mb-6 pb-4 border-b border-surface-container-highest flex items-center gap-2">
+            <span class="material-symbols-outlined material-symbols-filled text-primary-container">tune</span>
+            Hardware Configuration
+          </h2>
+          <div class="flex flex-col gap-5">
           <div>
-            <p class="eyebrow">Estimated limiting factor</p>
-            <h2 id="headline">Balanced gaming build</h2>
-            <p id="summary" class="lead"></p>
-            <div class="tag-row" id="tags"></div>
+            <label class="field-label" for="cpu-combo">Processor (CPU)</label>
+            <div id="cpu-combo"></div>
+            <input type="hidden" id="cpu-hidden" name="cpu">
           </div>
-          <div class="score-ring" id="scoreRing" style="--score-deg: 0deg;"><span id="scoreText">0%</span></div>
-        </div>
+          <div>
+            <label class="field-label" for="gpu-combo">Graphics Card (GPU)</label>
+            <div id="gpu-combo"></div>
+            <input type="hidden" id="gpu-hidden" name="gpu">
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="resolution">Resolution</label>
+              <select class="field-input" id="resolution" name="resolution">
+                <option value="1080p">1920 x 1080</option>
+                <option value="1440p" selected>2560 x 1440</option>
+                <option value="4k">3840 x 2160</option>
+                <option value="ultrawide">3440 x 1440</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="purpose">Primary Purpose</label>
+              <select class="field-input" id="purpose" name="purpose">
+                <option value="esports">Esports / high FPS</option>
+                <option value="aaa" selected>AAA gaming</option>
+                <option value="streaming">Gaming + streaming</option>
+                <option value="creation">Gaming + creator apps</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-surface-container-highest pt-5">
+            <div>
+              <label class="field-label" for="rt">Ray tracing</label>
+              <select class="field-input" id="rt" name="rt">
+                <option value="off" selected>Off</option>
+                <option value="on">On</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="upscaling">Upscaling</label>
+              <select class="field-input" id="upscaling" name="upscaling">
+                <option value="off" selected>Off</option>
+                <option value="quality">Quality (DLSS/FSR/XeSS)</option>
+                <option value="balanced">Balanced</option>
+                <option value="performance">Performance</option>
+              </select>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 border-t border-surface-container-highest pt-5">
+            <div>
+              <label class="field-label" for="ramAmount">RAM Amount</label>
+              <select class="field-input text-xs" id="ramAmount" name="ramAmount">
+                <option value="8">8 GB</option>
+                <option value="16" selected>16 GB</option>
+                <option value="32">32 GB</option>
+                <option value="64">64 GB</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="ramSpeed">RAM Speed</label>
+              <select class="field-input text-xs" id="ramSpeed" name="ramSpeed">
+                <option value="2666">DDR4-2666</option>
+                <option value="3200" selected>DDR4-3200</option>
+                <option value="3600">DDR4-3600</option>
+                <option value="5200">DDR5-5200</option>
+                <option value="5600">DDR5-5600</option>
+                <option value="6000">DDR5-6000</option>
+                <option value="6400">DDR5-6400</option>
+                <option value="7200">DDR5-7200</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-label" for="storage">Storage</label>
+              <select class="field-input text-xs" id="storage" name="storage">
+                <option value="hdd">Hard drive</option>
+                <option value="sata">SATA SSD</option>
+                <option value="nvme3" selected>NVMe Gen3</option>
+                <option value="nvme4">NVMe Gen4</option>
+                <option value="nvme5">NVMe Gen5</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="field-label" for="ramChannel">RAM Channel</label>
+            <select class="field-input" id="ramChannel" name="ramChannel">
+              <option value="dual" selected>Dual channel (2+ sticks)</option>
+              <option value="single">Single channel (1 stick)</option>
+            </select>
+          </div>
+          <label class="flex items-center gap-2 cursor-pointer font-mono text-xs uppercase tracking-wide text-on-surface">
+            <input type="checkbox" id="compareMode" name="compareMode" class="rounded border-outline-variant text-primary-container focus:ring-primary">
+            Compare two builds
+          </label>
+          <fieldset id="buildBFields" class="border border-outline-variant rounded-xl p-4 space-y-4" hidden>
+            <legend class="font-mono text-xs font-bold uppercase tracking-widest px-2">Build B Configuration</legend>
+            <div>
+              <label class="field-label" for="bcpu-combo">Processor (CPU)</label>
+              <div id="bcpu-combo"></div>
+              <input type="hidden" id="bcpu-hidden" name="bcpu">
+            </div>
+            <div>
+              <label class="field-label" for="bgpu-combo">Graphics Card (GPU)</label>
+              <div id="bgpu-combo"></div>
+              <input type="hidden" id="bgpu-hidden" name="bgpu">
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="field-label" for="bresolution">Resolution</label>
+                <select class="field-input" id="bresolution" name="bresolution">
+                  <option value="1080p">1920 x 1080</option>
+                  <option value="1440p" selected>2560 x 1440</option>
+                  <option value="4k">3840 x 2160</option>
+                  <option value="ultrawide">3440 x 1440</option>
+                </select>
+              </div>
+              <div>
+                <label class="field-label" for="bpurpose">Purpose</label>
+                <select class="field-input" id="bpurpose" name="bpurpose">
+                  <option value="esports">Esports / high FPS</option>
+                  <option value="aaa" selected>AAA gaming</option>
+                  <option value="streaming">Gaming + streaming</option>
+                  <option value="creation">Gaming + creator apps</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+          <button type="button" id="copyLink" class="btn-secondary w-full mt-2">
+            <span class="material-symbols-outlined text-base">link</span>
+            Copy share link
+          </button>
+          </div>
+        </form>
 
-        <div class="bars" id="bars"></div>
-        <div class="cards" id="advice"></div>
-      </section>
+        <div class="lg:col-span-7" id="resultPanel">
+          <div id="resultA" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div id="compareLayout" class="grid grid-cols-1 lg:grid-cols-12 gap-8" hidden>
+        <aside class="lg:col-span-3 space-y-6">
+          <div class="panel-card p-6 space-y-5">
+            <h2 class="text-lg font-semibold text-on-surface pb-3 border-b border-outline-variant">Compare Settings</h2>
+            <p class="text-sm text-on-surface-variant">Configure Build A and Build B in the form, then compare bottleneck risk side by side.</p>
+            <a href="#calculator" class="btn-secondary w-full justify-center" onclick="document.getElementById('singleLayout').scrollIntoView({behavior:'smooth'})">
+              <span class="material-symbols-outlined text-base">tune</span>
+              Edit configurations
+            </a>
+          </div>
+          <div class="panel-card p-6 text-center bg-surface-container-low">
+            <span class="material-symbols-outlined text-primary-container text-3xl mb-2 block">info</span>
+            <p class="text-sm text-on-surface-variant">Comparing builds helps identify which CPU + GPU combination offers better balance for your target resolution.</p>
+          </div>
+        </aside>
+        <div class="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div id="compareBuildA" aria-live="polite"></div>
+          <div id="compareBuildB" aria-live="polite"></div>
+        </div>
+      </div>
     </section>
 
-    <section id="methodology" class="wrap content">
-      <article class="panel wide">
+    <section id="what-is" class="content-section">
+      <article class="content-panel content-panel-wide">
+        <h2 class="text-xl font-semibold text-on-surface mb-3">What is a PC bottleneck?</h2>
+        <p class="text-on-surface-variant mb-3">A PC bottleneck occurs when one component in your build limits overall performance before other parts reach their full potential. In gaming, the bottleneck is almost always either the <strong class="text-on-surface">CPU</strong> (processor) or the <strong class="text-on-surface">GPU</strong> (graphics card). Understanding which component is limiting your frame rate helps you spend upgrade money wisely.</p>
+        <p class="text-on-surface-variant mb-3">Every PC has a bottleneck in every game — the question is whether it matters. A GPU bottleneck at 4K is healthy because your graphics card is working at full capacity. A CPU bottleneck at 1080p with an expensive GPU means you are wasting money on hardware that cannot reach its potential.</p>
+        <p class="text-on-surface-variant">Our free bottleneck calculator uses a matched-FPS model: it compares your CPU's gaming throughput against your GPU's per-resolution performance ceiling and tells you which component limits FPS first, plus an estimated bottleneck percentage.</p>
+      </article>
+    </section>
+
+    <section id="how-to" class="content-section">
+      <article class="content-panel content-panel-wide">
+        <h2>How to use this bottleneck calculator</h2>
+        <ol class="how-to-list">
+          <li><strong>Select your CPU</strong> — search from 70+ processors including AMD Ryzen, Intel Core, and Intel Core Ultra through June 2026.</li>
+          <li><strong>Select your GPU</strong> — choose from 120+ desktop and laptop graphics cards with VRAM variants (NVIDIA RTX, AMD RX, Intel Arc).</li>
+          <li><strong>Set your resolution</strong> — 1080p, 1440p, 4K, or ultrawide. Resolution dramatically changes which component is the limiter.</li>
+          <li><strong>Configure RAM and storage</strong> — amount, speed, dual vs single channel, and SSD type affect stutter and load times.</li>
+          <li><strong>Choose your workload</strong> — AAA gaming, esports, streaming, or creator apps shift the CPU/GPU balance.</li>
+          <li><strong>Read your results</strong> — see estimated FPS, 1% lows, bottleneck percentage, and which component to upgrade first.</li>
+        </ol>
+        <p>You can also enable <strong>compare mode</strong> to analyze two builds side by side, use <strong>quick presets</strong> for common configurations, or <strong>copy a share link</strong> to send your build to friends.</p>
+      </article>
+    </section>
+
+    <section id="popular" class="content-section">
+      <article class="content-panel content-panel-wide">
+        <h2>Popular CPU + GPU pairings</h2>
+        <p class="text-on-surface-variant text-sm mb-4">Pre-analyzed builds with estimated FPS and bottleneck direction. Click any pairing for a full breakdown.</p>
+        <div id="popularPairings" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+      </article>
+    </section>
+
+    <section id="presets" class="site-wrap py-8">
+      <div class="content-panel p-6">
+        <h2 class="text-xl font-semibold text-on-surface mb-2">Quick build presets</h2>
+        <p class="text-on-surface-variant text-sm mb-0">Load a curated build into the calculator with one click.</p>
+        <div id="buildPresets" class="preset-grid"></div>
+      </div>
+    </section>
+
+    <section id="guides" class="content-section">
+      <article class="content-panel content-panel-wide">
+        <h2>PC bottleneck guides</h2>
+        <p class="lead" style="margin-top:0;">In-depth tutorials on CPU bottlenecks, GPU bottlenecks, balanced builds, and calculator accuracy.</p>
+        <ul class="guide-list">
+          <li><a href="blog/what-is-cpu-bottleneck/">What is a CPU bottleneck (and how to fix it)</a></li>
+          <li><a href="blog/cpu-vs-gpu-bottleneck/">CPU vs GPU bottleneck — which is limiting your FPS?</a></li>
+          <li><a href="blog/is-bottleneck-bad/">Is a bottleneck bad? Acceptable bottleneck percentage explained</a></li>
+          <li><a href="blog/how-to-fix-gpu-bottleneck/">How to fix a GPU bottleneck — 7 proven methods</a></li>
+          <li><a href="blog/best-cpu-gpu-pairings-2026/">Best no-bottleneck CPU + GPU pairings for 2026</a></li>
+          <li><a href="blog/do-bottleneck-calculators-work/">Do bottleneck calculators actually work? Accuracy explained</a></li>
+        </ul>
+        <p><a href="blog/">Browse all guides →</a></p>
+      </article>
+    </section>
+
+    <section id="glossary" class="content-section">
+      <article class="content-panel content-panel-wide">
+        <h2>PC bottleneck glossary</h2>
+        <dl class="glossary-list">
+          <dt>Bottleneck percentage</dt>
+          <dd>The performance gap between your CPU and GPU ceilings. Below 10% is balanced; above 25% signals a strong upgrade opportunity.</dd>
+          <dt>CPU-bound</dt>
+          <dd>When the processor limits frame rate before the GPU reaches full utilization. Common at 1080p with mismatched pairings.</dd>
+          <dt>GPU-bound</dt>
+          <dd>When the graphics card is fully utilized and the CPU has headroom. Normal at 1440p and 4K.</dd>
+          <dt>1% low FPS</dt>
+          <dd>The average of the slowest 1% of frames. Lower 1% lows cause visible stutter even when average FPS looks fine.</dd>
+          <dt>Matched-FPS model</dt>
+          <dd>Our calculation method that compares independent CPU and GPU performance ceilings rather than using a single abstract score.</dd>
+          <dt>VRAM bottleneck</dt>
+          <dd>When your GPU runs out of video memory, causing texture streaming issues and sudden FPS drops at high resolutions.</dd>
+          <dt>X3D / 3D V-Cache</dt>
+          <dd>AMD's stacked L3 cache technology that significantly boosts gaming FPS in cache-sensitive titles.</dd>
+        </dl>
+      </article>
+    </section>
+
+    <section id="methodology" class="content-section">
+      <article class="content-panel content-panel-wide">
         <h2>How this PC bottleneck calculator works</h2>
-        <p>This calculator compares relative CPU game throughput, GPU render throughput, memory headroom, memory speed, storage class, resolution, and workload. It is a planning tool, not a benchmark replacement. Game engine, settings, cooling, drivers, background apps, and motherboard power limits can change results.</p>
+        <p>This calculator uses a matched-FPS model instead of a single abstract score. Each CPU has a resolution-independent gaming throughput index. Each GPU has per-resolution FPS values for a modern AAA-ultra game basket. Ray tracing and upscaling (DLSS/FSR/XeSS) adjust the GPU ceiling. The predicted FPS is the lower of the two ceilings, with separate 1% low estimates for frame pacing.</p>
         <ul class="method-list">
-          <li><strong>CPU score</strong><br>Weighted toward gaming IPC, cache, boost behavior, and modern core count.</li>
-          <li><strong>GPU score</strong><br>Weighted toward raster performance, VRAM class, and resolution scaling.</li>
-          <li><strong>RAM score</strong><br>Checks capacity pressure and speed penalty for high-FPS and creator workloads.</li>
-          <li><strong>Storage score</strong><br>Flags load-time and asset-streaming risk, especially for newer open-world games.</li>
+          <li><strong>CPU ceiling</strong><br>Resolution-independent gaming FPS index weighted toward IPC, cache (including 3D V-Cache), boost behavior, and modern core count.</li>
+          <li><strong>GPU ceiling</strong><br>Per-resolution raster FPS from a AAA-ultra basket, adjusted for ray tracing and upscaling mode.</li>
+          <li><strong>VRAM check</strong><br>Compares installed VRAM against recommended minimums for your resolution and workload.</li>
+          <li><strong>RAM check</strong><br>Evaluates capacity, speed (DDR4/DDR5), and dual vs single channel.</li>
+          <li><strong>Storage check</strong><br>Flags load-time and asset-streaming risk for HDDs and slow drives.</li>
         </ul>
       </article>
-      <article class="panel">
-        <h3>What "CPU bottleneck" means</h3>
-        <p>A CPU bottleneck usually appears as low GPU usage, unstable frame pacing, or weak minimum FPS. It is most common at 1080p, in esports titles, simulation games, and streaming workloads.</p>
+      <article class="content-panel">
+        <h3>How to fix a CPU bottleneck</h3>
+        <p>Upgrade to a faster gaming CPU (X3D chips excel in cache-sensitive titles), enable dual-channel RAM with XMP/EXPO, lower resolution or graphics settings that stress the CPU, and close background apps. At 1080p esports, CPU choice matters most.</p>
       </article>
-      <article class="panel">
-        <h3>What "GPU bottleneck" means</h3>
-        <p>A GPU bottleneck means the graphics card is the main performance limiter. This is normal at 1440p, ultrawide, and 4K with high visual settings, ray tracing, or heavy texture packs.</p>
+      <article class="content-panel">
+        <h3>How to fix a GPU bottleneck</h3>
+        <p>Upgrade the graphics card, enable DLSS/FSR/XeSS upscaling, lower ray tracing or shadow quality, or move to a lower resolution. At 1440p and 4K, a GPU bottleneck is normal and often desirable.</p>
       </article>
-      <article class="panel">
-        <h3>Why RAM and storage matter</h3>
-        <p>RAM and storage rarely raise average FPS like a stronger GPU can, but too little memory or a slow drive can cause stutter, long loading screens, texture pop-in, and poor multitasking.</p>
-      </article>
-      <article class="panel wide">
-        <h2>SEO and content approach</h2>
-        <p>This page is written to answer a real user task clearly: estimate a likely gaming PC bottleneck and explain the method. Following Google Search Central guidance, the page uses descriptive titles, crawlable text, structured data, a sitemap, a robots.txt file, responsive layout, and helpful content. These practices can help search engines understand the page, but they do not guarantee rankings.</p>
+      <article class="content-panel">
+        <h3>How to fix RAM or storage issues</h3>
+        <p>Move to 16 GB minimum (32 GB for streaming/mods), use dual-channel matched sticks, enable XMP/EXPO, and install games on an NVMe SSD. RAM and storage rarely limit average FPS but cause stutter and long loads.</p>
       </article>
     </section>
 
-    <section id="faq" class="wrap content">
-      <article class="panel wide">
+    <section id="faq" class="content-section">
+      <article class="content-panel content-panel-wide">
         <h2>PC bottleneck calculator FAQ</h2>
       </article>
-      <article class="panel">
+      <article class="content-panel">
         <h3>Is a bottleneck always bad?</h3>
         <p>No. Every PC has a limiting component in a given game. A "good" bottleneck is often the GPU at your target resolution because that means visual settings are using the graphics card fully.</p>
       </article>
-      <article class="panel">
+      <article class="content-panel">
         <h3>What bottleneck percentage is acceptable?</h3>
-        <p>Small gaps are normal. Treat results below about 12% as broadly balanced, 12-25% as worth checking against your games, and larger gaps as a stronger upgrade signal.</p>
+        <p>Small gaps are normal. Treat results below about 10% as broadly balanced, 10-25% as worth checking against your games, and larger gaps as a stronger upgrade signal.</p>
       </article>
-      <article class="panel">
+      <article class="content-panel">
         <h3>Should I upgrade CPU or GPU first?</h3>
         <p>For 1440p and 4K, GPU upgrades usually matter most. For 1080p high-refresh esports, simulation games, and streaming, CPU and RAM choices matter more than they do in GPU-bound AAA gaming.</p>
+      </article>
+      <article class="content-panel">
+        <h3>What is a CPU bottleneck?</h3>
+        <p>A CPU bottleneck occurs when your processor cannot prepare frames fast enough for your graphics card. The GPU sits idle, and FPS is capped by CPU performance. Most common at 1080p with high-end GPUs.</p>
+      </article>
+      <article class="content-panel">
+        <h3>What is a GPU bottleneck?</h3>
+        <p>A GPU bottleneck means your graphics card is fully utilized while the CPU has headroom. Normal and often desirable at 1440p and 4K gaming.</p>
+      </article>
+      <article class="content-panel">
+        <h3>How do I use a bottleneck calculator?</h3>
+        <p>Select your CPU, GPU, resolution, RAM, and gaming purpose. The calculator compares performance ceilings, estimates FPS and bottleneck percentage, and recommends which component to upgrade.</p>
+      </article>
+      <article class="content-panel">
+        <h3>Does RAM cause bottlenecks?</h3>
+        <p>RAM rarely limits average FPS but causes stutter. Use dual-channel memory with at least 16 GB and enable XMP/EXPO for best results.</p>
+      </article>
+      <article class="content-panel">
+        <h3>How accurate is this calculator?</h3>
+        <p>It uses real benchmark-derived FPS anchors per CPU and per GPU resolution, but individual games vary widely. Treat the estimated FPS and bottleneck percentage as a planning guide. Always confirm with game-specific benchmarks before buying hardware.</p>
+      </article>
+      <article class="content-panel">
+        <h3>Which hardware is included?</h3>
+        <p>The database covers NVIDIA GTX 10 through RTX 50, AMD RX 500 through RX 9000, Intel Arc A and B series, Intel 8th-gen through Core Ultra 200S, and AMD Ryzen 2000 through Ryzen 9000 including X3D variants, updated through June 2026.</p>
+      </article>
+      <article class="content-panel">
+        <h3>Can a bottleneck calculator be wrong?</h3>
+        <p>Yes, for specific games or unusual settings. Calculators use benchmark averages. Verify with game-specific benchmarks before expensive upgrades. <a href="blog/do-bottleneck-calculators-work/">Read our accuracy guide</a>.</p>
       </article>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">Free PC Bottleneck Calculator. Estimates are educational and should be compared with benchmarks for your specific games before buying hardware.</div>
+  <footer class="bg-surface-container-low border-t border-outline-variant mt-auto">
+    <div class="site-wrap py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <strong class="text-primary uppercase tracking-tight">Free PC Bottleneck Calculator</strong>
+        <p class="text-sm text-on-surface-variant mt-2">Estimates are educational and should be compared with benchmarks for your specific games before buying hardware.</p>
+      </div>
+      <div class="flex flex-wrap gap-4 md:justify-end items-start font-mono text-xs uppercase">
+        <a class="nav-link" href="#calculator">Calculator</a>
+        <a class="nav-link" href="blog/">Guides</a>
+        <a class="nav-link" href="about/">About</a>
+        <a class="nav-link" href="contact/">Contact</a>
+        <a class="nav-link" href="privacy/">Privacy</a>
+      </div>
+    </div>
+    <div class="site-wrap pb-8 text-xs text-on-surface-variant/70 font-mono flex flex-wrap gap-x-4 gap-y-1">
+      <span>Data last reviewed July 2026</span>
+      <a class="text-primary hover:underline" href="sitemap.xml">Sitemap</a>
+    </div>
   </footer>
 
-  <script>
-    const CPUs = [
-      { name: "Intel Core i3-10100", score: 48, cores: 4, tier: "entry" },
-      { name: "Intel Core i3-12100F", score: 66, cores: 4, tier: "budget" },
-      { name: "Intel Core i3-13100F", score: 70, cores: 4, tier: "budget" },
-      { name: "Intel Core i5-10400F", score: 58, cores: 6, tier: "budget" },
-      { name: "Intel Core i5-11400F", score: 62, cores: 6, tier: "budget" },
-      { name: "Intel Core i5-12400F", score: 78, cores: 6, tier: "mainstream" },
-      { name: "Intel Core i5-12600K", score: 86, cores: 10, tier: "mainstream" },
-      { name: "Intel Core i5-13400F", score: 84, cores: 10, tier: "mainstream" },
-      { name: "Intel Core i5-13600K", score: 96, cores: 14, tier: "performance" },
-      { name: "Intel Core i5-14600K", score: 99, cores: 14, tier: "performance" },
-      { name: "Intel Core i7-10700K", score: 70, cores: 8, tier: "mainstream" },
-      { name: "Intel Core i7-11700K", score: 74, cores: 8, tier: "mainstream" },
-      { name: "Intel Core i7-12700K", score: 94, cores: 12, tier: "performance" },
-      { name: "Intel Core i7-13700K", score: 104, cores: 16, tier: "high-end" },
-      { name: "Intel Core i7-14700K", score: 109, cores: 20, tier: "high-end" },
-      { name: "Intel Core i9-10900K", score: 76, cores: 10, tier: "mainstream" },
-      { name: "Intel Core i9-11900K", score: 79, cores: 8, tier: "mainstream" },
-      { name: "Intel Core i9-12900K", score: 98, cores: 16, tier: "high-end" },
-      { name: "Intel Core i9-13900K", score: 112, cores: 24, tier: "enthusiast" },
-      { name: "Intel Core i9-14900K", score: 116, cores: 24, tier: "enthusiast" },
-      { name: "AMD Ryzen 3 3100", score: 44, cores: 4, tier: "entry" },
-      { name: "AMD Ryzen 5 3600", score: 59, cores: 6, tier: "budget" },
-      { name: "AMD Ryzen 5 5500", score: 61, cores: 6, tier: "budget" },
-      { name: "AMD Ryzen 5 5600", score: 72, cores: 6, tier: "mainstream" },
-      { name: "AMD Ryzen 5 5600X", score: 75, cores: 6, tier: "mainstream" },
-      { name: "AMD Ryzen 5 7600", score: 93, cores: 6, tier: "performance" },
-      { name: "AMD Ryzen 5 7600X", score: 96, cores: 6, tier: "performance" },
-      { name: "AMD Ryzen 7 3700X", score: 63, cores: 8, tier: "budget" },
-      { name: "AMD Ryzen 7 5700X", score: 76, cores: 8, tier: "mainstream" },
-      { name: "AMD Ryzen 7 5800X", score: 80, cores: 8, tier: "mainstream" },
-      { name: "AMD Ryzen 7 5800X3D", score: 99, cores: 8, tier: "performance" },
-      { name: "AMD Ryzen 7 7700X", score: 101, cores: 8, tier: "high-end" },
-      { name: "AMD Ryzen 7 7800X3D", score: 120, cores: 8, tier: "enthusiast" },
-      { name: "AMD Ryzen 9 3900X", score: 66, cores: 12, tier: "mainstream" },
-      { name: "AMD Ryzen 9 5900X", score: 84, cores: 12, tier: "performance" },
-      { name: "AMD Ryzen 9 5950X", score: 87, cores: 16, tier: "performance" },
-      { name: "AMD Ryzen 9 7900X", score: 105, cores: 12, tier: "high-end" },
-      { name: "AMD Ryzen 9 7950X", score: 110, cores: 16, tier: "enthusiast" },
-      { name: "AMD Ryzen 9 7900X3D", score: 113, cores: 12, tier: "enthusiast" },
-      { name: "AMD Ryzen 9 7950X3D", score: 119, cores: 16, tier: "enthusiast" }
-    ];
-
-    const GPUs = [
-      { name: "NVIDIA GeForce GTX 1050 Ti", score: 23, vram: 4, tier: "entry" },
-      { name: "NVIDIA GeForce GTX 1650", score: 30, vram: 4, tier: "entry" },
-      { name: "NVIDIA GeForce GTX 1660 Super", score: 43, vram: 6, tier: "budget" },
-      { name: "NVIDIA GeForce RTX 2060", score: 50, vram: 6, tier: "budget" },
-      { name: "NVIDIA GeForce RTX 2070 Super", score: 63, vram: 8, tier: "mainstream" },
-      { name: "NVIDIA GeForce RTX 2080 Ti", score: 78, vram: 11, tier: "performance" },
-      { name: "NVIDIA GeForce RTX 3050", score: 42, vram: 8, tier: "budget" },
-      { name: "NVIDIA GeForce RTX 3060", score: 58, vram: 12, tier: "mainstream" },
-      { name: "NVIDIA GeForce RTX 3060 Ti", score: 72, vram: 8, tier: "performance" },
-      { name: "NVIDIA GeForce RTX 3070", score: 79, vram: 8, tier: "performance" },
-      { name: "NVIDIA GeForce RTX 3070 Ti", score: 84, vram: 8, tier: "performance" },
-      { name: "NVIDIA GeForce RTX 3080", score: 98, vram: 10, tier: "high-end" },
-      { name: "NVIDIA GeForce RTX 3080 Ti", score: 106, vram: 12, tier: "high-end" },
-      { name: "NVIDIA GeForce RTX 3090", score: 108, vram: 24, tier: "high-end" },
-      { name: "NVIDIA GeForce RTX 4060", score: 61, vram: 8, tier: "mainstream" },
-      { name: "NVIDIA GeForce RTX 4060 Ti", score: 74, vram: 8, tier: "performance" },
-      { name: "NVIDIA GeForce RTX 4070", score: 94, vram: 12, tier: "high-end" },
-      { name: "NVIDIA GeForce RTX 4070 Super", score: 103, vram: 12, tier: "high-end" },
-      { name: "NVIDIA GeForce RTX 4070 Ti Super", score: 117, vram: 16, tier: "enthusiast" },
-      { name: "NVIDIA GeForce RTX 4080 Super", score: 134, vram: 16, tier: "enthusiast" },
-      { name: "NVIDIA GeForce RTX 4090", score: 160, vram: 24, tier: "flagship" },
-      { name: "AMD Radeon RX 570", score: 27, vram: 4, tier: "entry" },
-      { name: "AMD Radeon RX 580", score: 33, vram: 8, tier: "entry" },
-      { name: "AMD Radeon RX 5500 XT", score: 35, vram: 8, tier: "budget" },
-      { name: "AMD Radeon RX 5600 XT", score: 49, vram: 6, tier: "budget" },
-      { name: "AMD Radeon RX 5700 XT", score: 62, vram: 8, tier: "mainstream" },
-      { name: "AMD Radeon RX 6600", score: 53, vram: 8, tier: "mainstream" },
-      { name: "AMD Radeon RX 6600 XT", score: 61, vram: 8, tier: "mainstream" },
-      { name: "AMD Radeon RX 6650 XT", score: 66, vram: 8, tier: "mainstream" },
-      { name: "AMD Radeon RX 6700 XT", score: 78, vram: 12, tier: "performance" },
-      { name: "AMD Radeon RX 6750 XT", score: 83, vram: 12, tier: "performance" },
-      { name: "AMD Radeon RX 6800", score: 93, vram: 16, tier: "high-end" },
-      { name: "AMD Radeon RX 6800 XT", score: 102, vram: 16, tier: "high-end" },
-      { name: "AMD Radeon RX 6900 XT", score: 108, vram: 16, tier: "high-end" },
-      { name: "AMD Radeon RX 7600", score: 58, vram: 8, tier: "mainstream" },
-      { name: "AMD Radeon RX 7600 XT", score: 64, vram: 16, tier: "mainstream" },
-      { name: "AMD Radeon RX 7700 XT", score: 88, vram: 12, tier: "performance" },
-      { name: "AMD Radeon RX 7800 XT", score: 99, vram: 16, tier: "high-end" },
-      { name: "AMD Radeon RX 7900 GRE", score: 108, vram: 16, tier: "high-end" },
-      { name: "AMD Radeon RX 7900 XT", score: 121, vram: 20, tier: "enthusiast" },
-      { name: "AMD Radeon RX 7900 XTX", score: 136, vram: 24, tier: "enthusiast" },
-      { name: "Intel Arc A580", score: 54, vram: 8, tier: "mainstream" },
-      { name: "Intel Arc A750", score: 60, vram: 8, tier: "mainstream" },
-      { name: "Intel Arc A770 16GB", score: 68, vram: 16, tier: "mainstream" }
-    ];
-
-    const resolutionProfiles = {
-      "1080p": { gpuLoad: 0.82, cpuLoad: 1.18, label: "1080p" },
-      "1440p": { gpuLoad: 1.06, cpuLoad: 1.0, label: "1440p" },
-      "4k": { gpuLoad: 1.48, cpuLoad: 0.84, label: "4K" },
-      "ultrawide": { gpuLoad: 1.2, cpuLoad: 0.94, label: "3440 x 1440 ultrawide" }
-    };
-
-    const purposeProfiles = {
-      esports: { cpu: 1.22, gpu: 0.86, ram: 1.05, storage: 0.8, label: "esports / high FPS" },
-      aaa: { cpu: 1.0, gpu: 1.08, ram: 1.0, storage: 1.0, label: "AAA gaming" },
-      streaming: { cpu: 1.22, gpu: 1.04, ram: 1.2, storage: 1.0, label: "gaming and streaming" },
-      creation: { cpu: 1.16, gpu: 1.0, ram: 1.35, storage: 1.15, label: "gaming and creator apps" }
-    };
-
-    const storageScores = {
-      hdd: { score: 34, label: "hard drive" },
-      sata: { score: 72, label: "SATA SSD" },
-      nvme3: { score: 88, label: "PCIe 3.0 NVMe SSD" },
-      nvme4: { score: 96, label: "PCIe 4.0 NVMe SSD" },
-      nvme5: { score: 100, label: "PCIe 5.0 NVMe SSD" }
-    };
-
-    const els = {
-      cpu: document.getElementById("cpu"),
-      gpu: document.getElementById("gpu"),
-      resolution: document.getElementById("resolution"),
-      purpose: document.getElementById("purpose"),
-      ramAmount: document.getElementById("ramAmount"),
-      ramSpeed: document.getElementById("ramSpeed"),
-      storage: document.getElementById("storage"),
-      headline: document.getElementById("headline"),
-      summary: document.getElementById("summary"),
-      tags: document.getElementById("tags"),
-      scoreRing: document.getElementById("scoreRing"),
-      scoreText: document.getElementById("scoreText"),
-      bars: document.getElementById("bars"),
-      advice: document.getElementById("advice")
-    };
-
-    function populateSelect(select, data, selectedName) {
-      const groups = data.reduce((acc, item) => {
-        const maker = item.name.split(" ")[0];
-        acc[maker] = acc[maker] || [];
-        acc[maker].push(item);
-        return acc;
-      }, {});
-
-      select.innerHTML = Object.entries(groups).map(([maker, items]) => {
-        const options = items.map(item => `<option value="${item.name}">${item.name}</option>`).join("");
-        return `<optgroup label="${maker}">${options}</optgroup>`;
-      }).join("");
-      select.value = selectedName;
-    }
-
-    function clamp(num, min, max) {
-      return Math.min(max, Math.max(min, num));
-    }
-
-    function getRamScore(amount, speed, purpose) {
-      let score = 100;
-      if (amount < 16) score -= purpose === "esports" ? 24 : 34;
-      if (amount === 16 && (purpose === "streaming" || purpose === "creation")) score -= 18;
-      if (amount >= 32) score += 4;
-      if (speed < 3000) score -= 16;
-      else if (speed < 3600) score -= 6;
-      else if (speed >= 6000) score += 4;
-      return clamp(score, 20, 100);
-    }
-
-    function classify(score) {
-      if (score < 12) return { label: "Balanced", color: "var(--good)" };
-      if (score < 25) return { label: "Moderate", color: "var(--warn)" };
-      return { label: "High", color: "var(--bad)" };
-    }
-
-    function calculate() {
-      const cpu = CPUs.find(item => item.name === els.cpu.value);
-      const gpu = GPUs.find(item => item.name === els.gpu.value);
-      const res = resolutionProfiles[els.resolution.value];
-      const purpose = purposeProfiles[els.purpose.value];
-      const ramAmount = Number(els.ramAmount.value);
-      const ramSpeed = Number(els.ramSpeed.value);
-      const storage = storageScores[els.storage.value];
-
-      const cpuCapacity = cpu.score / (res.cpuLoad * purpose.cpu);
-      const gpuCapacity = gpu.score / (res.gpuLoad * purpose.gpu);
-      const ratio = cpuCapacity / gpuCapacity;
-      const cpuGap = clamp((1 - ratio) * 100, 0, 65);
-      const gpuGap = clamp((ratio - 1) * 100, 0, 65);
-      const ramPressure = clamp((100 - getRamScore(ramAmount, ramSpeed, els.purpose.value)) * purpose.ram, 0, 65);
-      const storagePressure = clamp((100 - storage.score) * purpose.storage, 0, 65);
-
-      const scores = [
-        { key: "CPU", value: Math.round(cpuGap), text: "The processor is likely to limit frame rate or frame pacing first." },
-        { key: "GPU", value: Math.round(gpuGap), text: "The graphics card is likely to be the main performance limiter." },
-        { key: "RAM", value: Math.round(ramPressure), text: "Memory capacity or speed may cause stutter or weak multitasking." },
-        { key: "Storage", value: Math.round(storagePressure), text: "Storage may affect load times, asset streaming, or open-world smoothness." }
-      ].sort((a, b) => b.value - a.value);
-
-      const top = scores[0];
-      const state = classify(top.value);
-      const balanced = top.value < 12;
-      const headline = balanced ? "Balanced gaming build" : `${state.label} ${top.key} bottleneck risk`;
-      const summary = balanced
-        ? `${cpu.name} and ${gpu.name} look well matched for ${res.label} ${purpose.label}. Expect game-specific variation, but no single component stands out as a major limiter.`
-        : `${top.key} is the most likely limiter for ${res.label} ${purpose.label}. ${top.text} Use this as a shortlist signal, then confirm with benchmarks for the exact games and settings you play.`;
-
-      els.headline.textContent = headline;
-      els.summary.textContent = summary;
-      els.scoreRing.style.setProperty("--score-deg", `${top.value * 3.6}deg`);
-      els.scoreRing.style.background = `conic-gradient(${state.color} ${top.value * 3.6}deg, #e8eef4 0deg)`;
-      els.scoreText.textContent = `${top.value}%`;
-      els.tags.innerHTML = [
-        cpu.tier + " CPU",
-        gpu.tier + " GPU",
-        `${gpu.vram} GB VRAM`,
-        `${ramAmount} GB RAM`,
-        storage.label
-      ].map(tag => `<span class="tag">${tag}</span>`).join("");
-
-      els.bars.innerHTML = scores.map(item => `
-        <div class="bar">
-          <strong>${item.key}</strong>
-          <div class="track"><div class="fill" style="--w: ${item.value}%; background: ${classify(item.value).color};"></div></div>
-          <span>${item.value}%</span>
-        </div>
-      `).join("");
-
-      const advice = buildAdvice(top.key, { cpu, gpu, res, purpose, ramAmount, ramSpeed, storage, scores });
-      els.advice.innerHTML = advice.map(item => `
-        <article class="card">
-          <h3>${item.title}</h3>
-          <p>${item.body}</p>
-        </article>
-      `).join("");
-    }
-
-    function buildAdvice(topKey, ctx) {
-      const general = [
-        {
-          title: "Read the result correctly",
-          body: "A bottleneck percentage is an estimate of mismatch for this workload, not a universal FPS loss. Different games can shift the result."
-        },
-        {
-          title: "Best next check",
-          body: "Compare benchmark videos or reviews that use your resolution, target settings, and similar CPU/GPU pairing before buying parts."
-        }
-      ];
-
-      const specific = {
-        CPU: {
-          title: "CPU upgrade signal",
-          body: "Prioritize CPU, platform, or memory upgrades if you play high-refresh esports, strategy, simulation, or heavily modded games."
-        },
-        GPU: {
-          title: "GPU upgrade signal",
-          body: "A stronger GPU, lower graphics settings, upscaling, or a lower resolution should have the biggest effect on average FPS."
-        },
-        RAM: {
-          title: "RAM upgrade signal",
-          body: ctx.ramAmount < 16 ? "Move to at least 16 GB for modern gaming; 32 GB is safer for streaming, mods, and creator work." : "Check background apps, dual-channel mode, EXPO/XMP, and whether 32 GB makes sense for your workload."
-        },
-        Storage: {
-          title: "Storage upgrade signal",
-          body: "Install active games on an SSD. NVMe is useful for large modern games, frequent loading, and asset-heavy open-world titles."
-        }
-      };
-
-      return [specific[topKey], ...general];
-    }
-
-    populateSelect(els.cpu, CPUs, "AMD Ryzen 7 7800X3D");
-    populateSelect(els.gpu, GPUs, "NVIDIA GeForce RTX 4070 Super");
-    document.getElementById("buildForm").addEventListener("input", calculate);
-    calculate();
-  </script>
+  <script src="data/config.js" defer></script>
+  <script src="data/cpus.js" defer></script>
+  <script src="data/gpus.js" defer></script>
+  <script src="data/popular-pairings.js" defer></script>
+  <script src="assets/combobox.js" defer></script>
+  <script src="assets/app.js" defer></script>
 </body>
 </html>

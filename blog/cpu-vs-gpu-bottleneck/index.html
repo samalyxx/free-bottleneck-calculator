@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CPU vs GPU Bottleneck — Which Is Limiting Your FPS? | PC Bottleneck Calculator</title>
+  <meta name="description" content="Understand the difference between CPU and GPU bottlenecks, how resolution changes the limiter, and how to identify which component to upgrade first.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://freebottleneckcalculator.com/blog/cpu-vs-gpu-bottleneck/">
+  <meta name="theme-color" content="#0055ff">
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
+  <link rel="manifest" href="../../site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Free PC Bottleneck Calculator">
+  <meta property="og:title" content="CPU vs GPU Bottleneck — Which Is Limiting Your FPS? | PC Bottleneck Calculator">
+  <meta property="og:description" content="Understand the difference between CPU and GPU bottlenecks, how resolution changes the limiter, and how to identify which component to upgrade first.">
+  <meta property="og:url" content="https://freebottleneckcalculator.com/blog/cpu-vs-gpu-bottleneck/">
+  <meta property="og:image" content="https://freebottleneckcalculator.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CPU vs GPU Bottleneck — Which Is Limiting Your FPS? | PC Bottleneck Calculator">
+  <meta name="twitter:description" content="Understand the difference between CPU and GPU bottlenecks, how resolution changes the limiter, and how to identify which component to upgrade first.">
+  <meta name="twitter:image" content="https://freebottleneckcalculator.com/assets/og-image.png">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CPU vs GPU Bottleneck — Which Is Limiting Your FPS?",
+  "description": "Understand the difference between CPU and GPU bottlenecks, how resolution changes the limiter, and how to identify which component to upgrade first.",
+  "datePublished": "2026-07-02",
+  "dateModified": "2026-07-02",
+  "author": {
+    "@type": "Organization",
+    "name": "Free PC Bottleneck Calculator",
+    "url": "https://freebottleneckcalculator.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Free PC Bottleneck Calculator",
+    "url": "https://freebottleneckcalculator.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://freebottleneckcalculator.com/assets/og-image.png"
+    }
+  },
+  "mainEntityOfPage": "https://freebottleneckcalculator.com/blog/cpu-vs-gpu-bottleneck/",
+  "image": "https://freebottleneckcalculator.com/assets/og-image.png"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://freebottleneckcalculator.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Guides",
+      "item": "https://freebottleneckcalculator.com/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "CPU vs GPU Bottleneck — Which Is Limiting Your FPS?",
+      "item": "https://freebottleneckcalculator.com/blog/cpu-vs-gpu-bottleneck/"
+    }
+  ]
+}
+  </script>
+</head>
+<body class="flex flex-col min-h-screen">
+<header class="bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-50">
+    <nav class="site-wrap flex flex-wrap items-center justify-between gap-3 h-16" aria-label="Primary navigation">
+      <a class="font-bold text-primary flex items-center gap-2 no-underline text-on-surface" href="../../index.html">
+        <span class="material-symbols-outlined material-symbols-filled text-primary-container">memory</span>
+        <span class="text-lg tracking-tight uppercase">PC Bottleneck</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <div class="hidden md:flex items-center gap-6">
+          <a class="nav-link" href="../../index.html#calculator">Calculator</a>
+          <a class="nav-link" href="../../blog/">Guides</a>
+          <a class="nav-link" href="../../index.html#popular">Popular Builds</a>
+          <a class="nav-link" href="../../index.html#methodology">Methodology</a>
+          <a class="nav-link" href="../../index.html#faq">FAQ</a>
+        </div>
+        <button type="button" id="themeToggle" class="btn-secondary" aria-label="Toggle dark mode">Dark mode</button>
+      </div>
+    </nav>
+  </header>
+<main class="site-wrap py-10 md:py-12 blog-page">
+    <article class="panel-card p-6 md:p-8">
+      <p class="section-eyebrow">PC bottleneck guide</p>
+      <h1 class="text-2xl md:text-3xl font-semibold text-on-surface mb-2">CPU vs GPU Bottleneck — Which Is Limiting Your FPS?</h1>
+      <p class="text-sm text-on-surface-variant font-mono mb-4">Published 2026-07-02</p>
+      <div class="tag-row"><span class="tag">CPU vs GPU</span><span class="tag">bottleneck</span><span class="tag">FPS</span></div>
+      <div class="prose-blog"><p>Every gaming PC has a <strong>limiting component</strong> in any given scenario. The two most common limiters are the <strong>CPU</strong> and the <strong>GPU</strong>. Knowing which one is holding you back saves money and prevents wasted upgrades.</p>
+<h2>CPU bottleneck vs GPU bottleneck</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CPU bottleneck</th>
+<th>GPU bottleneck</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>What limits FPS</strong></td>
+<td>Processor frame preparation</td>
+<td>Graphics card rendering</td>
+</tr>
+<tr>
+<td><strong>Common at</strong></td>
+<td>1080p, esports, simulation games</td>
+<td>1440p, 4K, ray tracing</td>
+</tr>
+<tr>
+<td><strong>GPU usage</strong></td>
+<td>Often below 85%</td>
+<td>Usually 95–100%</td>
+</tr>
+<tr>
+<td><strong>Fix</strong></td>
+<td>Faster CPU, better RAM, lower resolution</td>
+<td>Stronger GPU, upscaling, lower graphics</td>
+</tr>
+<tr>
+<td><strong>Is it bad?</strong></td>
+<td>Yes, if you want higher FPS at low res</td>
+<td>Often normal and desirable at high res</td>
+</tr>
+</tbody></table>
+<h2>How resolution changes the limiter</h2>
+<p>Resolution is the single biggest factor in whether your build is CPU-bound or GPU-bound:</p>
+<ul>
+<li><strong>1080p:</strong> The GPU finishes frames quickly. Even mid-range cards can become CPU-limited with a weaker processor.</li>
+<li><strong>1440p:</strong> More balanced. A good CPU + mid-high GPU pairing often shows a modest GPU bottleneck.</li>
+<li><strong>4K:</strong> Almost always GPU-bound. The graphics card works at full capacity; CPU choice matters less for average FPS.</li>
+</ul>
+<p>This is why a Ryzen 5 5600 paired with an RTX 5090 shows a massive CPU bottleneck at 1080p but may look more balanced at 4K — the GPU finally has enough work to do.</p>
+<h2>How to identify your limiter</h2>
+<h3>Quick in-game test</h3>
+<ol>
+<li>Open a demanding game and note your FPS at High settings.</li>
+<li>Drop all graphics settings to Low.</li>
+<li><strong>If FPS barely changes</strong> → likely CPU bottleneck.</li>
+<li><strong>If FPS jumps significantly</strong> → likely GPU bottleneck.</li>
+</ol>
+<h3>Use a bottleneck calculator</h3>
+<p>A bottleneck calculator compares your CPU&#39;s gaming throughput against your GPU&#39;s per-resolution performance ceiling. Our <a href="/index.html#calculator">free calculator</a> models both components separately and shows which one limits FPS first, plus an estimated bottleneck percentage.</p>
+<h2>Which should you upgrade first?</h2>
+<p><strong>Upgrade GPU first if:</strong></p>
+<ul>
+<li>You game at 1440p or 4K</li>
+<li>GPU usage is consistently at 99%</li>
+<li>You want better visuals, ray tracing, or higher settings</li>
+</ul>
+<p><strong>Upgrade CPU first if:</strong></p>
+<ul>
+<li>You game at 1080p high refresh (144 Hz+)</li>
+<li>You play esports, simulators, or MMOs</li>
+<li>You stream or record while gaming</li>
+<li>GPU usage stays low despite low graphics settings</li>
+</ul>
+<h2>RAM and storage matter too</h2>
+<p>While RAM and storage rarely cap average FPS, they cause <strong>stutter</strong> and <strong>long load times</strong>. Single-channel RAM, 8 GB capacity, or running games from a hard drive can make a balanced build feel worse than the FPS number suggests.</p>
+<h2>Check your pairing now</h2>
+<p>Enter your CPU, GPU, and resolution in our <a href="/index.html#calculator">bottleneck calculator</a> for an instant CPU vs GPU analysis with estimated FPS and upgrade suggestions.</p>
+</div>
+      <div class="mt-8 panel-card p-5 bg-surface-container-low">
+        <h2 class="text-lg font-semibold text-on-surface mb-2">Check your build now</h2>
+        <p class="text-sm text-on-surface-variant mb-4">Use our free bottleneck calculator to see whether your CPU or GPU is limiting performance at your target resolution.</p>
+        <a class="btn-primary" href="../../index.html#calculator">Open bottleneck calculator</a>
+      </div>
+      <section class="related-posts">
+        <h2>Related guides</h2>
+        <ul class="guide-list">
+          <li><a href="../do-bottleneck-calculators-work/">Do Bottleneck Calculators Actually Work? Accuracy Explained</a></li><li><a href="../best-cpu-gpu-pairings-2026/">Best No-Bottleneck CPU + GPU Pairings for 2026</a></li><li><a href="../how-to-fix-gpu-bottleneck/">How to Fix a GPU Bottleneck — 7 Proven Methods</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+<footer class="bg-surface-container-low border-t border-outline-variant mt-auto">
+    <div class="site-wrap py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <strong class="text-primary uppercase tracking-tight">Free PC Bottleneck Calculator</strong>
+        <p class="text-sm text-on-surface-variant mt-2">Estimates are educational. Confirm with game-specific benchmarks before buying hardware.</p>
+      </div>
+      <div class="flex flex-wrap gap-4 md:justify-end font-mono text-xs uppercase">
+        <a class="nav-link" href="../../index.html#calculator">Calculator</a>
+        <a class="nav-link" href="../../blog/">Guides</a>
+        <a class="nav-link" href="../../about/">About</a>
+        <a class="nav-link" href="../../contact/">Contact</a>
+        <a class="nav-link" href="../../privacy/">Privacy</a>
+      </div>
+    </div>
+    <div class="site-wrap pb-8 text-xs text-on-surface-variant/70 font-mono flex flex-wrap gap-x-4 gap-y-1">
+      <span>Data last reviewed July 2026</span>
+      <a class="text-primary hover:underline" href="https://freebottleneckcalculator.com/sitemap.xml">Sitemap</a>
+    </div>
+  </footer>
+<script src="../../assets/theme.js" defer></script>
+</body>
+</html>

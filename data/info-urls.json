@@ -1,0 +1,20 @@
+[
+  {
+    "loc": "https://freebottleneckcalculator.com/about/",
+    "lastmod": "2026-07-06",
+    "priority": "0.6",
+    "changefreq": "yearly"
+  },
+  {
+    "loc": "https://freebottleneckcalculator.com/contact/",
+    "lastmod": "2026-07-06",
+    "priority": "0.6",
+    "changefreq": "yearly"
+  },
+  {
+    "loc": "https://freebottleneckcalculator.com/privacy/",
+    "lastmod": "2026-07-06",
+    "priority": "0.5",
+    "changefreq": "yearly"
+  }
+]

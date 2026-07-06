@@ -1,0 +1,122 @@
+name,brand,year,vram,tier,segment,rt,fps1080p,fps1440p,fps4k,fpsUltrawide,low1Ratio,source,sampleCount,lastVerified
+NVIDIA GeForce RTX 5090,NVIDIA,2025,32,flagship,desktop,95,240,200,120,170,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5080,NVIDIA,2025,16,enthusiast,desktop,90,220,165,95,140,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5070 Ti,NVIDIA,2025,16,high-end,desktop,85,195,145,72,123,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5070,NVIDIA,2025,12,high-end,desktop,80,185,130,62,110,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5060 Ti 16GB,NVIDIA,2025,16,performance,desktop,65,165,110,48,93,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5060 Ti 8GB,NVIDIA,2025,8,performance,desktop,65,158,102,42,87,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5060,NVIDIA,2025,8,mainstream,desktop,55,140,88,35,75,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5050,NVIDIA,2026,8,budget,desktop,40,110,68,25,58,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4090,NVIDIA,2022,24,flagship,desktop,92,215,175,105,149,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4080 Super,NVIDIA,2024,16,enthusiast,desktop,88,195,150,88,128,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4080,NVIDIA,2022,16,enthusiast,desktop,86,188,142,82,121,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4070 Ti Super,NVIDIA,2024,16,enthusiast,desktop,82,175,132,76,112,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4070 Ti,NVIDIA,2023,12,high-end,desktop,78,165,122,68,104,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4070 Super,NVIDIA,2024,12,high-end,desktop,76,158,128,72,109,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4070,NVIDIA,2023,12,high-end,desktop,72,148,118,65,100,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4060 Ti 16GB,NVIDIA,2023,16,performance,desktop,58,130,98,48,83,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4060 Ti 8GB,NVIDIA,2023,8,performance,desktop,58,128,95,45,81,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4060,NVIDIA,2023,8,mainstream,desktop,52,115,85,38,72,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3090 Ti,NVIDIA,2022,24,enthusiast,desktop,70,175,138,78,117,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3090,NVIDIA,2020,24,enthusiast,desktop,68,168,132,74,112,0.78,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3080 Ti,NVIDIA,2021,12,high-end,desktop,65,158,122,68,104,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3080 12GB,NVIDIA,2022,12,high-end,desktop,62,152,118,65,100,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3080 10GB,NVIDIA,2020,10,high-end,desktop,62,148,115,62,98,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3070 Ti,NVIDIA,2021,8,performance,desktop,58,135,102,52,87,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3070,NVIDIA,2020,8,performance,desktop,55,128,95,48,81,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3060 Ti,NVIDIA,2020,8,performance,desktop,50,118,88,42,75,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3060 12GB,NVIDIA,2021,12,mainstream,desktop,45,105,78,35,66,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3050,NVIDIA,2022,8,budget,desktop,35,82,58,24,49,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2080 Ti,NVIDIA,2018,11,high-end,desktop,45,125,92,48,78,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2080 Super,NVIDIA,2019,8,performance,desktop,42,115,85,42,72,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2070 Super,NVIDIA,2019,8,performance,desktop,40,108,78,38,66,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2060 Super,NVIDIA,2019,8,mainstream,desktop,35,98,72,32,61,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2060,NVIDIA,2019,6,mainstream,desktop,32,88,65,28,55,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1660 Ti,NVIDIA,2019,6,budget,desktop,0,82,58,22,49,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1660 Super,NVIDIA,2019,6,budget,desktop,0,78,55,20,47,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1660,NVIDIA,2019,6,budget,desktop,0,72,50,18,43,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1650 Super,NVIDIA,2019,4,entry,desktop,0,68,45,15,38,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1650,NVIDIA,2019,4,entry,desktop,0,58,38,12,32,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1080 Ti,NVIDIA,2017,11,performance,desktop,0,105,78,38,66,0.75,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1080,NVIDIA,2016,8,mainstream,desktop,0,92,68,32,58,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1070 Ti,NVIDIA,2017,8,mainstream,desktop,0,88,65,30,55,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1070,NVIDIA,2016,8,mainstream,desktop,0,82,58,26,49,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1060 6GB,NVIDIA,2016,6,budget,desktop,0,72,48,18,41,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1050 Ti,NVIDIA,2016,4,entry,desktop,0,52,32,10,27,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 9070 XTX,AMD,2025,20,enthusiast,desktop,75,210,175,100,149,0.78,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 9070 XT,AMD,2025,16,high-end,desktop,70,200,155,78,132,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 9070,AMD,2025,16,performance,desktop,65,185,130,65,110,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 9060 XT 16GB,AMD,2025,16,mainstream,desktop,55,160,105,45,89,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 9060 XT 8GB,AMD,2025,8,mainstream,desktop,55,152,98,38,83,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7900 XTX,AMD,2022,24,enthusiast,desktop,62,195,152,88,129,0.78,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7900 XT,AMD,2022,20,enthusiast,desktop,58,175,135,76,115,0.78,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7900 GRE,AMD,2024,16,high-end,desktop,55,158,122,68,104,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7800 XT,AMD,2023,16,high-end,desktop,52,148,112,58,95,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7700 XT,AMD,2023,12,performance,desktop,48,132,98,48,83,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7600 XT,AMD,2024,16,mainstream,desktop,40,108,78,32,66,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7600,AMD,2023,8,mainstream,desktop,38,102,72,28,61,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6950 XT,AMD,2022,16,high-end,desktop,45,148,112,58,95,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6900 XT,AMD,2020,16,high-end,desktop,42,142,108,55,92,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6800 XT,AMD,2020,16,performance,desktop,40,135,102,50,87,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6800,AMD,2020,16,performance,desktop,38,125,95,45,81,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6750 XT,AMD,2022,12,performance,desktop,35,118,88,40,75,0.75,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6700 XT,AMD,2021,12,mainstream,desktop,32,112,82,36,70,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6650 XT,AMD,2022,8,mainstream,desktop,28,102,75,30,64,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6600 XT,AMD,2021,8,mainstream,desktop,25,98,72,28,61,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6600,AMD,2021,8,budget,desktop,22,88,65,24,55,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6500 XT,AMD,2022,4,entry,desktop,0,62,42,14,36,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5700 XT,AMD,2019,8,mainstream,desktop,0,98,72,28,61,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5700,AMD,2019,8,mainstream,desktop,0,88,65,24,55,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5600 XT,AMD,2020,6,budget,desktop,0,82,58,20,49,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5500 XT,AMD,2019,8,budget,desktop,0,68,45,15,38,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 590,AMD,2018,8,entry,desktop,0,62,42,14,36,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 580,AMD,2017,8,entry,desktop,0,58,38,12,32,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 570,AMD,2017,4,entry,desktop,0,52,32,10,27,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc B580,Intel,2025,12,budget,desktop,50,130,95,45,81,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc B570,Intel,2025,10,budget,desktop,45,115,82,35,70,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A770 16GB,Intel,2022,16,mainstream,desktop,38,108,78,32,66,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A770 8GB,Intel,2022,8,mainstream,desktop,38,102,72,28,61,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A750,Intel,2022,8,mainstream,desktop,35,98,68,25,58,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A580,Intel,2023,8,budget,desktop,30,88,62,22,53,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A380,Intel,2022,6,entry,desktop,20,58,38,12,32,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4050,NVIDIA,2023,6,budget,desktop,45,95,68,28,58,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3060 8GB,NVIDIA,2022,8,mainstream,desktop,42,98,72,32,61,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1060 3GB,NVIDIA,2016,3,entry,desktop,0,62,40,14,35,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce GTX 1050,NVIDIA,2016,2,entry,desktop,0,45,28,8,24,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5500 XT 4GB,AMD,2019,4,budget,desktop,0,62,42,14,36,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 5500 XT 8GB,AMD,2019,8,budget,desktop,0,68,45,15,38,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A310,Intel,2022,4,entry,desktop,15,48,32,10,26,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5090 Laptop,NVIDIA,2025,24,flagship,mobile,90,165,130,72,115,0.76,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5080 Laptop,NVIDIA,2025,16,enthusiast,mobile,85,148,112,58,98,0.76,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5070 Ti Laptop,NVIDIA,2025,12,high-end,mobile,80,132,98,48,84,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5070 Laptop,NVIDIA,2025,8,high-end,mobile,75,122,88,42,75,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5060 Laptop,NVIDIA,2025,8,performance,mobile,52,98,68,28,54,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 5050 Laptop,NVIDIA,2026,8,mainstream,mobile,38,78,52,18,42,0.7,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4090 Laptop,NVIDIA,2023,16,enthusiast,mobile,88,142,108,58,95,0.76,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4080 Laptop,NVIDIA,2023,12,high-end,mobile,82,128,95,48,82,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4070 Laptop,NVIDIA,2023,8,high-end,mobile,70,112,82,38,72,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4060 Laptop,NVIDIA,2023,8,performance,mobile,50,88,62,26,48,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 4050 Laptop,NVIDIA,2023,6,mainstream,mobile,42,72,50,18,38,0.7,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3080 Ti Laptop,NVIDIA,2022,16,high-end,mobile,62,118,88,42,75,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3080 Laptop,NVIDIA,2021,8,high-end,mobile,58,108,78,36,68,0.74,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3070 Ti Laptop,NVIDIA,2022,8,performance,mobile,55,98,72,32,62,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3070 Laptop,NVIDIA,2021,8,performance,mobile,52,92,68,30,58,0.72,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3060 Laptop,NVIDIA,2021,6,mainstream,mobile,42,78,55,22,46,0.7,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3050 Ti Laptop,NVIDIA,2021,4,budget,mobile,32,62,42,14,36,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 3050 Laptop,NVIDIA,2022,4,budget,mobile,30,58,38,12,32,0.68,curated-benchmark-anchors,12,2026-07-06
+NVIDIA GeForce RTX 2050,NVIDIA,2022,4,entry,mobile,20,48,32,10,26,0.68,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7900M,AMD,2023,16,enthusiast,mobile,58,135,102,48,88,0.76,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7800M,AMD,2024,12,high-end,mobile,50,118,88,38,75,0.74,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7700S,AMD,2023,8,performance,mobile,45,102,75,32,65,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7600M XT,AMD,2023,8,performance,mobile,38,92,68,28,58,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 7600M,AMD,2023,8,mainstream,mobile,35,85,62,24,52,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6900M,AMD,2021,12,high-end,mobile,40,112,82,36,68,0.74,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6800M,AMD,2021,12,performance,mobile,38,105,78,32,64,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6700M,AMD,2021,10,mainstream,mobile,30,88,65,24,55,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6650M XT,AMD,2022,8,mainstream,mobile,26,82,58,20,50,0.72,curated-benchmark-anchors,12,2026-07-06
+AMD Radeon RX 6600M,AMD,2021,8,budget,mobile,22,75,52,18,44,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A770M,Intel,2022,16,performance,mobile,35,95,68,28,58,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A730M,Intel,2022,12,mainstream,mobile,32,82,58,22,48,0.72,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A570M,Intel,2023,8,mainstream,mobile,28,72,50,18,40,0.7,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A550M,Intel,2022,8,budget,mobile,25,65,45,15,36,0.68,curated-benchmark-anchors,12,2026-07-06
+Intel Arc A370M,Intel,2022,4,entry,mobile,18,48,32,10,26,0.68,curated-benchmark-anchors,12,2026-07-06

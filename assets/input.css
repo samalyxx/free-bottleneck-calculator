@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply bg-background text-on-surface font-sans text-sm antialiased min-h-screen flex flex-col;
+  }
+  [data-theme="dark"] body {
+    @apply bg-inverse-surface text-inverse-on-surface;
+  }
+  [data-theme="dark"] .panel-card,
+  [data-theme="dark"] .result-panel,
+  [data-theme="dark"] .compare-card {
+    @apply bg-inverse-surface border-outline;
+  }
+  [data-theme="dark"] .field-input,
+  [data-theme="dark"] .combobox-input {
+    @apply bg-surface-container border-outline text-inverse-on-surface;
+  }
+}
+
+@layer components {
+  .site-wrap {
+    @apply w-full max-w-site mx-auto px-4 sm:px-margin;
+  }
+  .field-label {
+    @apply block font-mono text-xs font-medium uppercase tracking-wider text-on-surface-variant mb-1.5;
+  }
+  .field-input {
+    @apply w-full bg-surface-container-low border border-outline-variant rounded-lg px-3 py-3 font-mono text-sm text-on-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors;
+  }
+  .panel-card {
+    @apply bg-surface-container-lowest border border-outline-variant rounded-xl;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary font-mono text-xs font-bold uppercase tracking-widest px-4 py-3 rounded-xl hover:brightness-110 transition-all;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 border border-outline-variant bg-surface-container-lowest text-on-surface font-mono text-xs font-medium uppercase tracking-wide px-4 py-2.5 rounded-lg hover:border-primary hover:text-primary transition-colors;
+  }
+  .nav-link {
+    @apply font-mono text-xs uppercase tracking-wide text-on-surface-variant hover:text-primary transition-colors;
+  }
+  .nav-link-active {
+    @apply text-primary font-bold border-b-2 border-primary;
+  }
+  .chip {
+    @apply inline-flex items-center px-2.5 py-1 bg-surface-container border border-outline-variant rounded font-mono text-xs text-on-surface;
+  }
+  .chip-warn {
+    @apply border-tertiary/40 bg-tertiary-container/20 text-tertiary;
+  }
+  .chip-highlight {
+    @apply border-primary/40 relative overflow-hidden pl-2;
+  }
+  .chip-highlight::before {
+    content: "";
+    @apply absolute inset-y-0 left-0 w-0.5 bg-primary-container;
+  }
+  .result-panel {
+    @apply panel-card p-6 relative overflow-hidden flex flex-col h-full;
+  }
+  .result-panel::before {
+    content: "";
+    @apply absolute left-0 top-0 bottom-0 w-1 bg-primary-container;
+  }
+  .compare-card {
+    @apply panel-card flex flex-col overflow-hidden shadow-sm hover:shadow-md transition-shadow;
+  }
+  .compare-card-winner {
+    @apply border-2 border-primary-container shadow-lg scale-[1.01] md:scale-[1.02];
+  }
+  .section-eyebrow {
+    @apply font-mono text-xs font-bold uppercase tracking-widest text-primary mb-2;
+  }
+  .content-section {
+    @apply site-wrap py-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .content-panel {
+    @apply panel-card p-5;
+  }
+  .content-panel-wide {
+    @apply sm:col-span-2 lg:col-span-3;
+  }
+  .guide-list li {
+    @apply mb-2;
+  }
+  .guide-list a {
+    @apply font-semibold text-primary hover:underline;
+  }
+  .pairing-link {
+    @apply panel-card p-4 no-underline text-on-surface hover:border-primary transition-colors grid gap-1;
+  }
+  .pairing-link span { @apply font-bold text-sm; }
+  .pairing-link small { @apply text-on-surface-variant text-xs; }
+  .preset-grid { @apply flex flex-wrap gap-2 mt-3; }
+  .method-list { @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-4 list-none p-0 m-0 mt-4; }
+  .method-list li { @apply panel-card p-4 text-sm text-on-surface-variant; }
+  .glossary-list dt { @apply font-bold text-on-surface mt-3; }
+  .glossary-list dd { @apply text-on-surface-variant mt-1 mb-2; }
+  .how-to-list { @apply list-decimal pl-5 space-y-2 text-on-surface-variant; }
+  .content-panel h2 { @apply text-xl font-semibold text-on-surface mb-3; }
+  .content-panel h3 { @apply text-base font-semibold text-on-surface mb-2; }
+  .content-panel p { @apply text-on-surface-variant text-sm leading-relaxed; }
+  .prose-blog {
+    @apply max-w-3xl leading-relaxed text-on-surface-variant [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-on-surface [&_h2]:mt-8 [&_h2]:mb-3 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_p]:mb-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mb-2 [&_table]:w-full [&_th]:border [&_td]:border [&_th]:p-2 [&_td]:p-2 [&_th]:bg-surface-container-low;
+  }
+
+  /* Combobox */
+  .combobox {
+    @apply relative;
+  }
+  .combobox-input {
+    @apply field-input;
+  }
+  .combobox-list {
+    @apply absolute z-50 top-full left-0 right-0 mt-1 max-h-72 overflow-y-auto bg-surface-container-lowest border border-outline-variant rounded-lg shadow-lg py-1 list-none m-0 p-0;
+  }
+  .combobox-group {
+    @apply px-3 pt-2 pb-1 font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant;
+  }
+  .combobox-option {
+    @apply px-3 py-2.5 cursor-pointer text-sm hover:bg-surface-container-low hover:text-primary;
+  }
+  .combobox-option.highlighted {
+    @apply bg-surface-container-low text-primary;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+  vertical-align: middle;
+}
+.material-symbols-filled {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
