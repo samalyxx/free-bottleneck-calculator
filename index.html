@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free PC Bottleneck Calculator for Gaming | CPU GPU RAM Storage Check</title>
+  <meta name="description" content="Estimate likely CPU, GPU, RAM, and storage bottlenecks for a gaming PC. Choose your parts, resolution, memory, storage, and purpose to get a clear upgrade-focused result.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free PC Bottleneck Calculator for Gaming">
+  <meta property="og:description" content="Check whether your CPU, GPU, RAM, or storage is most likely to limit your PC gaming experience.">
+  <meta property="og:url" content="https://example.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --ink: #16202a;
+      --muted: #596978;
+      --line: #d9e1ea;
+      --accent: #0b6f8f;
+      --accent-2: #c04d37;
+      --good: #237a57;
+      --warn: #b46a05;
+      --bad: #b3261e;
+      --chip: #ecf3f7;
+      --shadow: 0 10px 30px rgba(21, 36, 51, .08);
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 0%, rgba(11, 111, 143, .08), transparent 28rem),
+        linear-gradient(180deg, #fbfcfe 0%, var(--bg) 44rem);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    a { color: var(--accent); }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .8);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: conic-gradient(from 210deg, #0b6f8f, #2d9a73, #e0a526, #c04d37, #0b6f8f);
+      position: relative;
+      box-shadow: inset 0 0 0 5px #fff, 0 3px 10px rgba(0, 0, 0, .12);
+    }
+
+    .mark::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--ink);
+      border-radius: 2px;
+      position: absolute;
+      left: 14px;
+      top: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: .95rem;
+    }
+
+    .hero {
+      padding: 54px 0 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: .08em;
+      margin: 0 0 10px;
+    }
+
+    h1, h2, h3 { line-height: 1.12; letter-spacing: 0; }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.6rem);
+      margin: 0;
+      max-width: 10ch;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 62ch;
+      margin: 20px 0 0;
+    }
+
+    .hero-visual {
+      min-height: 320px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #101820;
+      color: #eaf2f8;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      place-items: center;
+    }
+
+    .board {
+      width: min(86%, 430px);
+      aspect-ratio: 1.28 / 1;
+      border: 2px solid rgba(234, 242, 248, .28);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 26px 26px,
+        linear-gradient(0deg, rgba(255,255,255,.05) 1px, transparent 1px) 0 0 / 26px 26px,
+        #17303a;
+      position: relative;
+      padding: 28px;
+    }
+
+    .cpu-block, .gpu-block, .ram-stick, .ssd-stick {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 6px;
+      background: rgba(255,255,255,.12);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: .82rem;
+    }
+
+    .cpu-block { width: 112px; height: 112px; left: 42px; top: 48px; }
+    .gpu-block { width: 202px; height: 72px; right: 34px; bottom: 54px; }
+    .ram-stick { width: 24px; height: 168px; right: 76px; top: 34px; writing-mode: vertical-rl; }
+    .ssd-stick { width: 128px; height: 30px; left: 62px; bottom: 62px; }
+
+    .trace {
+      position: absolute;
+      height: 3px;
+      background: #58c2a2;
+      transform-origin: left center;
+      opacity: .9;
+    }
+
+    .t1 { width: 112px; left: 154px; top: 102px; }
+    .t2 { width: 116px; left: 205px; bottom: 90px; }
+    .t3 { width: 70px; right: 88px; top: 210px; transform: rotate(90deg); }
+
+    main { padding-bottom: 60px; }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 420px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+      margin-top: 18px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .controls {
+      padding: 22px;
+      position: sticky;
+      top: 88px;
+    }
+
+    .field {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: 750;
+      font-size: .92rem;
+    }
+
+    select, input {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid #c7d2df;
+      border-radius: 7px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .result {
+      padding: 24px;
+      min-height: 560px;
+    }
+
+    .result-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 170px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .score-ring {
+      width: 156px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--accent-2) var(--score-deg), #e8eef4 0deg);
+      position: relative;
+      justify-self: end;
+    }
+
+    .score-ring::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .score-ring span {
+      position: relative;
+      z-index: 1;
+      font-size: 2.1rem;
+      font-weight: 900;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 0;
+    }
+
+    .tag {
+      background: var(--chip);
+      border: 1px solid #d5e4eb;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #29414d;
+      font-size: .86rem;
+      font-weight: 700;
+    }
+
+    .bars { margin-top: 24px; display: grid; gap: 12px; }
+
+    .bar {
+      display: grid;
+      grid-template-columns: 86px minmax(0, 1fr) 48px;
+      gap: 12px;
+      align-items: center;
+      font-size: .92rem;
+    }
+
+    .track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e7edf3;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: var(--w);
+      border-radius: inherit;
+      background: var(--accent);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #fbfdff;
+    }
+
+    .card h3, .content h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .card p, .content p, .content li {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .content {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .content .panel {
+      padding: 20px;
+      box-shadow: none;
+    }
+
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    .method-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      padding-left: 0;
+      list-style: none;
+      margin: 14px 0 0;
+    }
+
+    .method-list li {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px 0 42px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    @media (max-width: 900px) {
+      header { position: static; }
+      .hero, .app-grid, .content { grid-template-columns: 1fr; }
+      .controls { position: static; }
+      h1 { max-width: 12ch; }
+      .method-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 620px) {
+      .wrap { width: min(100% - 22px, 1180px); }
+      .nav-links { display: none; }
+      .hero { padding-top: 34px; }
+      .hero-visual { min-height: 250px; }
+      .board { width: 92%; }
+      .cpu-block { width: 82px; height: 82px; }
+      .gpu-block { width: 146px; height: 58px; }
+      .ram-stick { height: 122px; right: 46px; }
+      .ssd-stick { width: 94px; }
+      .split, .result-top, .cards, .method-list { grid-template-columns: 1fr; }
+      .score-ring { justify-self: start; }
+      .bar { grid-template-columns: 74px minmax(0, 1fr) 42px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Free PC Bottleneck Calculator",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "description": "A free browser-based calculator that estimates likely CPU, GPU, RAM, and storage bottlenecks for gaming PCs."
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="Primary navigation">
+      <div class="brand"><span class="mark" aria-hidden="true"></span><span>PC Bottleneck Calculator</span></div>
+      <div class="nav-links">
+        <a href="#calculator">Calculator</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div>
+        <p class="eyebrow">Free gaming PC tool</p>
+        <h1>PC Bottleneck Calculator</h1>
+        <p class="lead">Choose a CPU, GPU, resolution, RAM configuration, storage type, and workload to estimate which component is most likely to hold back real-world gaming performance.</p>
+      </div>
+      <div class="hero-visual" aria-label="Stylized PC motherboard showing CPU, GPU, RAM, and storage components">
+        <div class="board">
+          <div class="trace t1"></div>
+          <div class="trace t2"></div>
+          <div class="trace t3"></div>
+          <div class="cpu-block">CPU</div>
+          <div class="gpu-block">GPU</div>
+          <div class="ram-stick">RAM</div>
+          <div class="ssd-stick">SSD</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator" class="wrap app-grid" aria-label="PC bottleneck calculator">
+      <form class="panel controls" id="buildForm">
+        <div class="field">
+          <label for="cpu">CPU</label>
+          <select id="cpu" name="cpu"></select>
+        </div>
+        <div class="field">
+          <label for="gpu">GPU</label>
+          <select id="gpu" name="gpu"></select>
+        </div>
+        <div class="split">
+          <div class="field">
+            <label for="resolution">Resolution</label>
+            <select id="resolution" name="resolution">
+              <option value="1080p">1920 x 1080</option>
+              <option value="1440p" selected>2560 x 1440</option>
+              <option value="4k">3840 x 2160</option>
+              <option value="ultrawide">3440 x 1440</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="purpose">Purpose</label>
+            <select id="purpose" name="purpose">
+              <option value="esports">Esports / high FPS</option>
+              <option value="aaa" selected>AAA gaming</option>
+              <option value="streaming">Gaming + streaming</option>
+              <option value="creation">Gaming + creator apps</option>
+            </select>
+          </div>
+        </div>
+        <div class="split">
+          <div class="field">
+            <label for="ramAmount">RAM amount</label>
+            <select id="ramAmount" name="ramAmount">
+              <option value="8">8 GB</option>
+              <option value="16" selected>16 GB</option>
+              <option value="32">32 GB</option>
+              <option value="64">64 GB</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="ramSpeed">RAM speed</label>
+            <select id="ramSpeed" name="ramSpeed">
+              <option value="2666">DDR4-2666</option>
+              <option value="3200" selected>DDR4-3200</option>
+              <option value="3600">DDR4-3600</option>
+              <option value="5200">DDR5-5200</option>
+              <option value="6000">DDR5-6000</option>
+              <option value="7200">DDR5-7200</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="storage">Storage</label>
+          <select id="storage" name="storage">
+            <option value="hdd">Hard drive</option>
+            <option value="sata">SATA SSD</option>
+            <option value="nvme3" selected>PCIe 3.0 NVMe SSD</option>
+            <option value="nvme4">PCIe 4.0 NVMe SSD</option>
+            <option value="nvme5">PCIe 5.0 NVMe SSD</option>
+          </select>
+        </div>
+      </form>
+
+      <section class="panel result" aria-live="polite">
+        <div class="result-top">
+          <div>
+            <p class="eyebrow">Estimated limiting factor</p>
+            <h2 id="headline">Balanced gaming build</h2>
+            <p id="summary" class="lead"></p>
+            <div class="tag-row" id="tags"></div>
+          </div>
+          <div class="score-ring" id="scoreRing" style="--score-deg: 0deg;"><span id="scoreText">0%</span></div>
+        </div>
+
+        <div class="bars" id="bars"></div>
+        <div class="cards" id="advice"></div>
+      </section>
+    </section>
+
+    <section id="methodology" class="wrap content">
+      <article class="panel wide">
+        <h2>How this PC bottleneck calculator works</h2>
+        <p>This calculator compares relative CPU game throughput, GPU render throughput, memory headroom, memory speed, storage class, resolution, and workload. It is a planning tool, not a benchmark replacement. Game engine, settings, cooling, drivers, background apps, and motherboard power limits can change results.</p>
+        <ul class="method-list">
+          <li><strong>CPU score</strong><br>Weighted toward gaming IPC, cache, boost behavior, and modern core count.</li>
+          <li><strong>GPU score</strong><br>Weighted toward raster performance, VRAM class, and resolution scaling.</li>
+          <li><strong>RAM score</strong><br>Checks capacity pressure and speed penalty for high-FPS and creator workloads.</li>
+          <li><strong>Storage score</strong><br>Flags load-time and asset-streaming risk, especially for newer open-world games.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>What "CPU bottleneck" means</h3>
+        <p>A CPU bottleneck usually appears as low GPU usage, unstable frame pacing, or weak minimum FPS. It is most common at 1080p, in esports titles, simulation games, and streaming workloads.</p>
+      </article>
+      <article class="panel">
+        <h3>What "GPU bottleneck" means</h3>
+        <p>A GPU bottleneck means the graphics card is the main performance limiter. This is normal at 1440p, ultrawide, and 4K with high visual settings, ray tracing, or heavy texture packs.</p>
+      </article>
+      <article class="panel">
+        <h3>Why RAM and storage matter</h3>
+        <p>RAM and storage rarely raise average FPS like a stronger GPU can, but too little memory or a slow drive can cause stutter, long loading screens, texture pop-in, and poor multitasking.</p>
+      </article>
+      <article class="panel wide">
+        <h2>SEO and content approach</h2>
+        <p>This page is written to answer a real user task clearly: estimate a likely gaming PC bottleneck and explain the method. Following Google Search Central guidance, the page uses descriptive titles, crawlable text, structured data, a sitemap, a robots.txt file, responsive layout, and helpful content. These practices can help search engines understand the page, but they do not guarantee rankings.</p>
+      </article>
+    </section>
+
+    <section id="faq" class="wrap content">
+      <article class="panel wide">
+        <h2>PC bottleneck calculator FAQ</h2>
+      </article>
+      <article class="panel">
+        <h3>Is a bottleneck always bad?</h3>
+        <p>No. Every PC has a limiting component in a given game. A "good" bottleneck is often the GPU at your target resolution because that means visual settings are using the graphics card fully.</p>
+      </article>
+      <article class="panel">
+        <h3>What bottleneck percentage is acceptable?</h3>
+        <p>Small gaps are normal. Treat results below about 12% as broadly balanced, 12-25% as worth checking against your games, and larger gaps as a stronger upgrade signal.</p>
+      </article>
+      <article class="panel">
+        <h3>Should I upgrade CPU or GPU first?</h3>
+        <p>For 1440p and 4K, GPU upgrades usually matter most. For 1080p high-refresh esports, simulation games, and streaming, CPU and RAM choices matter more than they do in GPU-bound AAA gaming.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Free PC Bottleneck Calculator. Estimates are educational and should be compared with benchmarks for your specific games before buying hardware.</div>
+  </footer>
+
+  <script>
+    const CPUs = [
+      { name: "Intel Core i3-10100", score: 48, cores: 4, tier: "entry" },
+      { name: "Intel Core i3-12100F", score: 66, cores: 4, tier: "budget" },
+      { name: "Intel Core i3-13100F", score: 70, cores: 4, tier: "budget" },
+      { name: "Intel Core i5-10400F", score: 58, cores: 6, tier: "budget" },
+      { name: "Intel Core i5-11400F", score: 62, cores: 6, tier: "budget" },
+      { name: "Intel Core i5-12400F", score: 78, cores: 6, tier: "mainstream" },
+      { name: "Intel Core i5-12600K", score: 86, cores: 10, tier: "mainstream" },
+      { name: "Intel Core i5-13400F", score: 84, cores: 10, tier: "mainstream" },
+      { name: "Intel Core i5-13600K", score: 96, cores: 14, tier: "performance" },
+      { name: "Intel Core i5-14600K", score: 99, cores: 14, tier: "performance" },
+      { name: "Intel Core i7-10700K", score: 70, cores: 8, tier: "mainstream" },
+      { name: "Intel Core i7-11700K", score: 74, cores: 8, tier: "mainstream" },
+      { name: "Intel Core i7-12700K", score: 94, cores: 12, tier: "performance" },
+      { name: "Intel Core i7-13700K", score: 104, cores: 16, tier: "high-end" },
+      { name: "Intel Core i7-14700K", score: 109, cores: 20, tier: "high-end" },
+      { name: "Intel Core i9-10900K", score: 76, cores: 10, tier: "mainstream" },
+      { name: "Intel Core i9-11900K", score: 79, cores: 8, tier: "mainstream" },
+      { name: "Intel Core i9-12900K", score: 98, cores: 16, tier: "high-end" },
+      { name: "Intel Core i9-13900K", score: 112, cores: 24, tier: "enthusiast" },
+      { name: "Intel Core i9-14900K", score: 116, cores: 24, tier: "enthusiast" },
+      { name: "AMD Ryzen 3 3100", score: 44, cores: 4, tier: "entry" },
+      { name: "AMD Ryzen 5 3600", score: 59, cores: 6, tier: "budget" },
+      { name: "AMD Ryzen 5 5500", score: 61, cores: 6, tier: "budget" },
+      { name: "AMD Ryzen 5 5600", score: 72, cores: 6, tier: "mainstream" },
+      { name: "AMD Ryzen 5 5600X", score: 75, cores: 6, tier: "mainstream" },
+      { name: "AMD Ryzen 5 7600", score: 93, cores: 6, tier: "performance" },
+      { name: "AMD Ryzen 5 7600X", score: 96, cores: 6, tier: "performance" },
+      { name: "AMD Ryzen 7 3700X", score: 63, cores: 8, tier: "budget" },
+      { name: "AMD Ryzen 7 5700X", score: 76, cores: 8, tier: "mainstream" },
+      { name: "AMD Ryzen 7 5800X", score: 80, cores: 8, tier: "mainstream" },
+      { name: "AMD Ryzen 7 5800X3D", score: 99, cores: 8, tier: "performance" },
+      { name: "AMD Ryzen 7 7700X", score: 101, cores: 8, tier: "high-end" },
+      { name: "AMD Ryzen 7 7800X3D", score: 120, cores: 8, tier: "enthusiast" },
+      { name: "AMD Ryzen 9 3900X", score: 66, cores: 12, tier: "mainstream" },
+      { name: "AMD Ryzen 9 5900X", score: 84, cores: 12, tier: "performance" },
+      { name: "AMD Ryzen 9 5950X", score: 87, cores: 16, tier: "performance" },
+      { name: "AMD Ryzen 9 7900X", score: 105, cores: 12, tier: "high-end" },
+      { name: "AMD Ryzen 9 7950X", score: 110, cores: 16, tier: "enthusiast" },
+      { name: "AMD Ryzen 9 7900X3D", score: 113, cores: 12, tier: "enthusiast" },
+      { name: "AMD Ryzen 9 7950X3D", score: 119, cores: 16, tier: "enthusiast" }
+    ];
+
+    const GPUs = [
+      { name: "NVIDIA GeForce GTX 1050 Ti", score: 23, vram: 4, tier: "entry" },
+      { name: "NVIDIA GeForce GTX 1650", score: 30, vram: 4, tier: "entry" },
+      { name: "NVIDIA GeForce GTX 1660 Super", score: 43, vram: 6, tier: "budget" },
+      { name: "NVIDIA GeForce RTX 2060", score: 50, vram: 6, tier: "budget" },
+      { name: "NVIDIA GeForce RTX 2070 Super", score: 63, vram: 8, tier: "mainstream" },
+      { name: "NVIDIA GeForce RTX 2080 Ti", score: 78, vram: 11, tier: "performance" },
+      { name: "NVIDIA GeForce RTX 3050", score: 42, vram: 8, tier: "budget" },
+      { name: "NVIDIA GeForce RTX 3060", score: 58, vram: 12, tier: "mainstream" },
+      { name: "NVIDIA GeForce RTX 3060 Ti", score: 72, vram: 8, tier: "performance" },
+      { name: "NVIDIA GeForce RTX 3070", score: 79, vram: 8, tier: "performance" },
+      { name: "NVIDIA GeForce RTX 3070 Ti", score: 84, vram: 8, tier: "performance" },
+      { name: "NVIDIA GeForce RTX 3080", score: 98, vram: 10, tier: "high-end" },
+      { name: "NVIDIA GeForce RTX 3080 Ti", score: 106, vram: 12, tier: "high-end" },
+      { name: "NVIDIA GeForce RTX 3090", score: 108, vram: 24, tier: "high-end" },
+      { name: "NVIDIA GeForce RTX 4060", score: 61, vram: 8, tier: "mainstream" },
+      { name: "NVIDIA GeForce RTX 4060 Ti", score: 74, vram: 8, tier: "performance" },
+      { name: "NVIDIA GeForce RTX 4070", score: 94, vram: 12, tier: "high-end" },
+      { name: "NVIDIA GeForce RTX 4070 Super", score: 103, vram: 12, tier: "high-end" },
+      { name: "NVIDIA GeForce RTX 4070 Ti Super", score: 117, vram: 16, tier: "enthusiast" },
+      { name: "NVIDIA GeForce RTX 4080 Super", score: 134, vram: 16, tier: "enthusiast" },
+      { name: "NVIDIA GeForce RTX 4090", score: 160, vram: 24, tier: "flagship" },
+      { name: "AMD Radeon RX 570", score: 27, vram: 4, tier: "entry" },
+      { name: "AMD Radeon RX 580", score: 33, vram: 8, tier: "entry" },
+      { name: "AMD Radeon RX 5500 XT", score: 35, vram: 8, tier: "budget" },
+      { name: "AMD Radeon RX 5600 XT", score: 49, vram: 6, tier: "budget" },
+      { name: "AMD Radeon RX 5700 XT", score: 62, vram: 8, tier: "mainstream" },
+      { name: "AMD Radeon RX 6600", score: 53, vram: 8, tier: "mainstream" },
+      { name: "AMD Radeon RX 6600 XT", score: 61, vram: 8, tier: "mainstream" },
+      { name: "AMD Radeon RX 6650 XT", score: 66, vram: 8, tier: "mainstream" },
+      { name: "AMD Radeon RX 6700 XT", score: 78, vram: 12, tier: "performance" },
+      { name: "AMD Radeon RX 6750 XT", score: 83, vram: 12, tier: "performance" },
+      { name: "AMD Radeon RX 6800", score: 93, vram: 16, tier: "high-end" },
+      { name: "AMD Radeon RX 6800 XT", score: 102, vram: 16, tier: "high-end" },
+      { name: "AMD Radeon RX 6900 XT", score: 108, vram: 16, tier: "high-end" },
+      { name: "AMD Radeon RX 7600", score: 58, vram: 8, tier: "mainstream" },
+      { name: "AMD Radeon RX 7600 XT", score: 64, vram: 16, tier: "mainstream" },
+      { name: "AMD Radeon RX 7700 XT", score: 88, vram: 12, tier: "performance" },
+      { name: "AMD Radeon RX 7800 XT", score: 99, vram: 16, tier: "high-end" },
+      { name: "AMD Radeon RX 7900 GRE", score: 108, vram: 16, tier: "high-end" },
+      { name: "AMD Radeon RX 7900 XT", score: 121, vram: 20, tier: "enthusiast" },
+      { name: "AMD Radeon RX 7900 XTX", score: 136, vram: 24, tier: "enthusiast" },
+      { name: "Intel Arc A580", score: 54, vram: 8, tier: "mainstream" },
+      { name: "Intel Arc A750", score: 60, vram: 8, tier: "mainstream" },
+      { name: "Intel Arc A770 16GB", score: 68, vram: 16, tier: "mainstream" }
+    ];
+
+    const resolutionProfiles = {
+      "1080p": { gpuLoad: 0.82, cpuLoad: 1.18, label: "1080p" },
+      "1440p": { gpuLoad: 1.06, cpuLoad: 1.0, label: "1440p" },
+      "4k": { gpuLoad: 1.48, cpuLoad: 0.84, label: "4K" },
+      "ultrawide": { gpuLoad: 1.2, cpuLoad: 0.94, label: "3440 x 1440 ultrawide" }
+    };
+
+    const purposeProfiles = {
+      esports: { cpu: 1.22, gpu: 0.86, ram: 1.05, storage: 0.8, label: "esports / high FPS" },
+      aaa: { cpu: 1.0, gpu: 1.08, ram: 1.0, storage: 1.0, label: "AAA gaming" },
+      streaming: { cpu: 1.22, gpu: 1.04, ram: 1.2, storage: 1.0, label: "gaming and streaming" },
+      creation: { cpu: 1.16, gpu: 1.0, ram: 1.35, storage: 1.15, label: "gaming and creator apps" }
+    };
+
+    const storageScores = {
+      hdd: { score: 34, label: "hard drive" },
+      sata: { score: 72, label: "SATA SSD" },
+      nvme3: { score: 88, label: "PCIe 3.0 NVMe SSD" },
+      nvme4: { score: 96, label: "PCIe 4.0 NVMe SSD" },
+      nvme5: { score: 100, label: "PCIe 5.0 NVMe SSD" }
+    };
+
+    const els = {
+      cpu: document.getElementById("cpu"),
+      gpu: document.getElementById("gpu"),
+      resolution: document.getElementById("resolution"),
+      purpose: document.getElementById("purpose"),
+      ramAmount: document.getElementById("ramAmount"),
+      ramSpeed: document.getElementById("ramSpeed"),
+      storage: document.getElementById("storage"),
+      headline: document.getElementById("headline"),
+      summary: document.getElementById("summary"),
+      tags: document.getElementById("tags"),
+      scoreRing: document.getElementById("scoreRing"),
+      scoreText: document.getElementById("scoreText"),
+      bars: document.getElementById("bars"),
+      advice: document.getElementById("advice")
+    };
+
+    function populateSelect(select, data, selectedName) {
+      const groups = data.reduce((acc, item) => {
+        const maker = item.name.split(" ")[0];
+        acc[maker] = acc[maker] || [];
+        acc[maker].push(item);
+        return acc;
+      }, {});
+
+      select.innerHTML = Object.entries(groups).map(([maker, items]) => {
+        const options = items.map(item => `<option value="${item.name}">${item.name}</option>`).join("");
+        return `<optgroup label="${maker}">${options}</optgroup>`;
+      }).join("");
+      select.value = selectedName;
+    }
+
+    function clamp(num, min, max) {
+      return Math.min(max, Math.max(min, num));
+    }
+
+    function getRamScore(amount, speed, purpose) {
+      let score = 100;
+      if (amount < 16) score -= purpose === "esports" ? 24 : 34;
+      if (amount === 16 && (purpose === "streaming" || purpose === "creation")) score -= 18;
+      if (amount >= 32) score += 4;
+      if (speed < 3000) score -= 16;
+      else if (speed < 3600) score -= 6;
+      else if (speed >= 6000) score += 4;
+      return clamp(score, 20, 100);
+    }
+
+    function classify(score) {
+      if (score < 12) return { label: "Balanced", color: "var(--good)" };
+      if (score < 25) return { label: "Moderate", color: "var(--warn)" };
+      return { label: "High", color: "var(--bad)" };
+    }
+
+    function calculate() {
+      const cpu = CPUs.find(item => item.name === els.cpu.value);
+      const gpu = GPUs.find(item => item.name === els.gpu.value);
+      const res = resolutionProfiles[els.resolution.value];
+      const purpose = purposeProfiles[els.purpose.value];
+      const ramAmount = Number(els.ramAmount.value);
+      const ramSpeed = Number(els.ramSpeed.value);
+      const storage = storageScores[els.storage.value];
+
+      const cpuCapacity = cpu.score / (res.cpuLoad * purpose.cpu);
+      const gpuCapacity = gpu.score / (res.gpuLoad * purpose.gpu);
+      const ratio = cpuCapacity / gpuCapacity;
+      const cpuGap = clamp((1 - ratio) * 100, 0, 65);
+      const gpuGap = clamp((ratio - 1) * 100, 0, 65);
+      const ramPressure = clamp((100 - getRamScore(ramAmount, ramSpeed, els.purpose.value)) * purpose.ram, 0, 65);
+      const storagePressure = clamp((100 - storage.score) * purpose.storage, 0, 65);
+
+      const scores = [
+        { key: "CPU", value: Math.round(cpuGap), text: "The processor is likely to limit frame rate or frame pacing first." },
+        { key: "GPU", value: Math.round(gpuGap), text: "The graphics card is likely to be the main performance limiter." },
+        { key: "RAM", value: Math.round(ramPressure), text: "Memory capacity or speed may cause stutter or weak multitasking." },
+        { key: "Storage", value: Math.round(storagePressure), text: "Storage may affect load times, asset streaming, or open-world smoothness." }
+      ].sort((a, b) => b.value - a.value);
+
+      const top = scores[0];
+      const state = classify(top.value);
+      const balanced = top.value < 12;
+      const headline = balanced ? "Balanced gaming build" : `${state.label} ${top.key} bottleneck risk`;
+      const summary = balanced
+        ? `${cpu.name} and ${gpu.name} look well matched for ${res.label} ${purpose.label}. Expect game-specific variation, but no single component stands out as a major limiter.`
+        : `${top.key} is the most likely limiter for ${res.label} ${purpose.label}. ${top.text} Use this as a shortlist signal, then confirm with benchmarks for the exact games and settings you play.`;
+
+      els.headline.textContent = headline;
+      els.summary.textContent = summary;
+      els.scoreRing.style.setProperty("--score-deg", `${top.value * 3.6}deg`);
+      els.scoreRing.style.background = `conic-gradient(${state.color} ${top.value * 3.6}deg, #e8eef4 0deg)`;
+      els.scoreText.textContent = `${top.value}%`;
+      els.tags.innerHTML = [
+        cpu.tier + " CPU",
+        gpu.tier + " GPU",
+        `${gpu.vram} GB VRAM`,
+        `${ramAmount} GB RAM`,
+        storage.label
+      ].map(tag => `<span class="tag">${tag}</span>`).join("");
+
+      els.bars.innerHTML = scores.map(item => `
+        <div class="bar">
+          <strong>${item.key}</strong>
+          <div class="track"><div class="fill" style="--w: ${item.value}%; background: ${classify(item.value).color};"></div></div>
+          <span>${item.value}%</span>
+        </div>
+      `).join("");
+
+      const advice = buildAdvice(top.key, { cpu, gpu, res, purpose, ramAmount, ramSpeed, storage, scores });
+      els.advice.innerHTML = advice.map(item => `
+        <article class="card">
+          <h3>${item.title}</h3>
+          <p>${item.body}</p>
+        </article>
+      `).join("");
+    }
+
+    function buildAdvice(topKey, ctx) {
+      const general = [
+        {
+          title: "Read the result correctly",
+          body: "A bottleneck percentage is an estimate of mismatch for this workload, not a universal FPS loss. Different games can shift the result."
+        },
+        {
+          title: "Best next check",
+          body: "Compare benchmark videos or reviews that use your resolution, target settings, and similar CPU/GPU pairing before buying parts."
+        }
+      ];
+
+      const specific = {
+        CPU: {
+          title: "CPU upgrade signal",
+          body: "Prioritize CPU, platform, or memory upgrades if you play high-refresh esports, strategy, simulation, or heavily modded games."
+        },
+        GPU: {
+          title: "GPU upgrade signal",
+          body: "A stronger GPU, lower graphics settings, upscaling, or a lower resolution should have the biggest effect on average FPS."
+        },
+        RAM: {
+          title: "RAM upgrade signal",
+          body: ctx.ramAmount < 16 ? "Move to at least 16 GB for modern gaming; 32 GB is safer for streaming, mods, and creator work." : "Check background apps, dual-channel mode, EXPO/XMP, and whether 32 GB makes sense for your workload."
+        },
+        Storage: {
+          title: "Storage upgrade signal",
+          body: "Install active games on an SSD. NVMe is useful for large modern games, frequent loading, and asset-heavy open-world titles."
+        }
+      };
+
+      return [specific[topKey], ...general];
+    }
+
+    populateSelect(els.cpu, CPUs, "AMD Ryzen 7 7800X3D");
+    populateSelect(els.gpu, GPUs, "NVIDIA GeForce RTX 4070 Super");
+    document.getElementById("buildForm").addEventListener("input", calculate);
+    calculate();
+  </script>
+</body>
+</html>
