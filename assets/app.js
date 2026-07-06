@@ -605,19 +605,26 @@
 
   function initTheme() {
     const saved = localStorage.getItem(themeKey);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const theme = saved || (prefersDark ? "dark" : "light");
-    document.documentElement.setAttribute("data-theme", theme);
+    applyTheme(saved === "dark" ? "dark" : "light");
+  }
+
+  function applyTheme(theme) {
+    const next = theme === "dark" ? "dark" : "light";
+    const isDark = next === "dark";
+    document.documentElement.setAttribute("data-theme", next);
     const btn = document.getElementById("themeToggle");
-    if (btn) btn.textContent = theme === "dark" ? "Light mode" : "Dark mode";
+    if (btn) {
+      btn.textContent = isDark ? "Light mode" : "Dark mode";
+      btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+      btn.setAttribute("aria-pressed", String(isDark));
+    }
   }
 
   function toggleTheme() {
     const current = document.documentElement.getAttribute("data-theme") || "light";
     const next = current === "dark" ? "light" : "dark";
-    document.documentElement.setAttribute("data-theme", next);
+    applyTheme(next);
     localStorage.setItem(themeKey, next);
-    document.getElementById("themeToggle").textContent = next === "dark" ? "Light mode" : "Dark mode";
     track("theme_toggle", { theme: next });
   }
 
