@@ -189,7 +189,7 @@
       container.innerHTML = `<div class="compare-card p-6"><p class="text-on-surface-variant">Select valid CPU and GPU.</p></div>`;
       return;
     }
-    const meta = classify(result.top.value);
+    const meta = classify(result.primaryGap);
     const summary = limiterSummary(result);
     const ramLabel = `${result.ramAmount} GB ${result.ramChannel === "dual" ? "DDR" : "DDR"} @ ${document.getElementById("ramSpeed")?.value || "3200"}`;
     const tags = [
@@ -217,9 +217,9 @@
             </div>
           </div>
           <div class="pt-4 border-t border-outline-variant">
-            <h4 class="field-label mb-3">Bottleneck Risk (${result.res.label})</h4>
+            <h4 class="field-label mb-3">CPU/GPU Pairing Risk (${result.res.label})</h4>
             <div class="flex items-center gap-5">
-              ${renderGauge(result.top.value, meta)}
+              ${renderGauge(result.primaryGap, meta)}
               <div>
                 <p class="font-semibold text-on-surface">${summary.title}</p>
                 <p class="text-on-surface-variant text-sm mt-1">${summary.body}</p>
@@ -239,7 +239,7 @@
       return;
     }
 
-    const meta = classify(result.top.value);
+    const meta = classify(result.primaryGap);
     const advice = buildAdvice(result)[0];
     const scoreBars = result.scores
       .map((item) => {
@@ -254,6 +254,18 @@
           </div>
         </div>`;
       })
+      .join("");
+
+    const secondaryHealthHtml = result.secondaryHealth
+      .map(
+        (item) => `<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4">
+          <div class="flex items-center justify-between gap-3 mb-2">
+            <h4 class="text-sm font-semibold text-on-surface">${item.key}</h4>
+            <span class="chip uppercase text-[10px]">${item.warning ? "Secondary warning" : "Healthy"}</span>
+          </div>
+          <p class="text-sm text-on-surface-variant">${item.text}</p>
+        </div>`
+      )
       .join("");
 
     const suggestionHtml = suggestions
@@ -274,13 +286,13 @@
         </div>
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 bg-surface-container-low p-5 rounded-xl border border-outline-variant pl-3">
           <div>
-            <span class="field-label tracking-widest">Bottleneck Risk</span>
+            <span class="field-label tracking-widest">CPU/GPU Pairing Bottleneck Risk</span>
             <div class="flex items-end gap-2 mt-1">
-              <span class="text-4xl sm:text-5xl font-bold ${meta.text} leading-none">${result.top.value}%</span>
+              <span class="text-4xl sm:text-5xl font-bold ${meta.text} leading-none">${result.primaryGap}%</span>
               <span class="font-mono text-xs font-bold ${meta.text} uppercase pb-1">${meta.label}</span>
             </div>
           </div>
-          ${renderGauge(result.top.value, meta)}
+          ${renderGauge(result.primaryGap, meta)}
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
           <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-4">
@@ -293,8 +305,14 @@
           </div>
         </div>
         <div class="flex-grow flex flex-col gap-4 mb-6">
-          <h3 class="field-label border-b border-outline-variant pb-2 tracking-widest">Component Utilization Ceiling</h3>
+          <h3 class="field-label border-b border-outline-variant pb-2 tracking-widest">CPU/GPU Pairing Gap</h3>
           ${scoreBars}
+        </div>
+        <div class="mb-6">
+          <h3 class="field-label border-b border-outline-variant pb-2 mb-4 tracking-widest">Secondary Health Checks</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            ${secondaryHealthHtml}
+          </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-auto">
           <div class="bg-surface-container-low border border-outline-variant p-4 rounded-xl">
@@ -341,7 +359,7 @@
     const gpuCeiling = getGpuCeiling(gpu, resKey, purposeKey, inputs.rt, inputs.upscaling);
     const predictedFps = Math.min(cpuCeiling, gpuCeiling);
     const maxCeiling = Math.max(cpuCeiling, gpuCeiling);
-    const primaryGap = maxCeiling > 0 ? ((maxCeiling - predictedFps) / maxCeiling) * 100 : 0;
+    const primaryGap = clamp(maxCeiling > 0 ? ((maxCeiling - predictedFps) / maxCeiling) * 100 : 0, 0, thresholds.maxGap);
     const limiter = cpuCeiling < gpuCeiling ? "CPU" : "GPU";
 
     const cpuGap = clamp(cpuCeiling < gpuCeiling ? primaryGap : 0, 0, thresholds.maxGap);
@@ -359,21 +377,46 @@
       { key: "CPU", value: Math.round(cpuGap), text: "The processor is likely to limit frame rate or frame pacing first." },
       {
         key: "GPU",
-        value: Math.round(Math.max(gpuGap, vramPressure * 0.6)),
-        text:
-          vramPressure > gpuGap
-            ? "The graphics card may lack VRAM for this resolution and workload, causing texture or stutter issues."
-            : "The graphics card is likely to be the main performance limiter."
-      },
-      { key: "RAM", value: Math.round(ramPressure), text: "Memory capacity, speed, or channel config may cause stutter or weak multitasking." },
-      { key: "Storage", value: Math.round(storagePressure), text: "Storage may affect load times, asset streaming, or open-world smoothness." }
+        value: Math.round(gpuGap),
+        text: "The graphics card is likely to be the main performance limiter."
+      }
     ].sort((a, b) => b.value - a.value);
 
-    const top = scores[0];
-    const state = classify(top.value);
-    const balanced = top.value < thresholds.balanced;
+    const roundedPrimaryGap = Math.round(primaryGap);
+    const secondaryHealth = [
+      {
+        key: "VRAM",
+        value: Math.round(vramPressure),
+        warning: vramPressure > 0,
+        text:
+          vramPressure > 0
+            ? `${gpu.vram} GB installed; ${requiredVram} GB is recommended for this resolution and workload. Low VRAM may cause texture or stutter issues.`
+            : `${gpu.vram} GB meets the ${requiredVram} GB recommendation for this resolution and workload.`
+      },
+      {
+        key: "RAM",
+        value: Math.round(ramPressure),
+        warning: ramPressure >= thresholds.balanced,
+        text:
+          ramPressure >= thresholds.balanced
+            ? "Memory capacity, speed, or channel configuration may cause stutter or weak multitasking."
+            : "Memory capacity, speed, and channel configuration are healthy for this workload."
+      },
+      {
+        key: "Storage",
+        value: Math.round(storagePressure),
+        warning: storagePressure >= thresholds.balanced,
+        text:
+          storagePressure >= thresholds.balanced
+            ? `${storage.label} may affect load times, asset streaming, or open-world smoothness.`
+            : `${storage.label} is healthy for game loading and asset streaming.`
+      }
+    ];
+
+    const state = classify(roundedPrimaryGap);
+    const balanced = roundedPrimaryGap < thresholds.balanced;
     const onePercentLow = estimateOnePercentLow(predictedFps, limiter, cpu, gpu, ramPressure);
-    const confidence = getConfidence(cpu, gpu, cpuCeiling, gpuCeiling, top.value);
+    const confidence = getConfidence(cpu, gpu, cpuCeiling, gpuCeiling, roundedPrimaryGap);
 
     return {
       cpu,
@@ -393,9 +436,9 @@
       predictedFps: Math.round(predictedFps),
       onePercentLow,
       limiter,
-      primaryGap: Math.round(primaryGap),
+      primaryGap: roundedPrimaryGap,
       scores,
-      top,
+      secondaryHealth,
       state,
       balanced,
       vramPressure,
@@ -488,7 +531,13 @@
       }
     };
 
-    const items = [specific[result.top.key]];
+    const pairingAdvice = result.balanced
+      ? {
+          title: "Balanced pairing",
+          body: "The CPU and GPU are well matched for this workload, so there is no pairing-driven upgrade priority."
+        }
+      : specific[result.limiter];
+    const items = [pairingAdvice];
     if (vramAdvice) items.push(vramAdvice);
     return items.concat(general);
   }
@@ -568,8 +617,17 @@
     document.title = title;
     const desc = document.querySelector('meta[name="description"]');
     if (desc) {
-      desc.content = `Estimate bottleneck for ${result.cpu.name} and ${result.gpu.name} at ${result.res.label}. ~${result.predictedFps} FPS avg, ${result.top.key} ${result.top.value}% risk.`;
+      desc.content = `Estimate bottleneck for ${result.cpu.name} and ${result.gpu.name} at ${result.res.label}. ~${result.predictedFps} FPS avg, ${result.limiter} ${result.primaryGap}% risk.`;
     }
+  }
+
+  function isSecondResultBetter(resultA, resultB) {
+    return Boolean(
+      resultB &&
+        resultA &&
+        (resultB.primaryGap < resultA.primaryGap ||
+          (resultB.primaryGap === resultA.primaryGap && resultB.predictedFps > resultA.predictedFps))
+    );
   }
 
   function runCalculation() {
@@ -587,7 +645,7 @@
         purpose: document.getElementById("bpurpose").value
       };
       const resultB = computeResult(buildB);
-      const winnerB = resultB && resultA && (resultB.top.value < resultA.top.value || (resultB.top.value === resultA.top.value && resultB.predictedFps > resultA.predictedFps));
+      const winnerB = isSecondResultBetter(resultA, resultB);
       renderCompareCard(document.getElementById("compareBuildA"), resultA, "Build A", "Current", !winnerB);
       renderCompareCard(document.getElementById("compareBuildB"), resultB, "Build B", null, winnerB);
     } else {
@@ -595,7 +653,7 @@
     }
     updateSeo(resultA);
 
-    track("calculate", { limiter: resultA?.limiter, gap: resultA?.top?.value, compare: compareOn });
+    track("calculate", { limiter: resultA?.limiter, gap: resultA?.primaryGap, compare: compareOn });
   }
 
   function toggleCompareUI() {
@@ -721,6 +779,10 @@
     document.getElementById("themeToggle")?.addEventListener("click", toggleTheme);
     runCalculation();
     track("page_load", {});
+  }
+
+  if (window.__BOTTLENECK_TEST__) {
+    window.__BOTTLENECK_TEST_API__ = { computeResult, buildAdvice, isSecondResultBetter };
   }
 
   if (document.readyState === "loading") {
