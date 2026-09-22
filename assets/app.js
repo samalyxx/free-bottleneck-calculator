@@ -359,7 +359,7 @@
     const gpuCeiling = getGpuCeiling(gpu, resKey, purposeKey, inputs.rt, inputs.upscaling);
     const predictedFps = Math.min(cpuCeiling, gpuCeiling);
     const maxCeiling = Math.max(cpuCeiling, gpuCeiling);
-    const primaryGap = maxCeiling > 0 ? ((maxCeiling - predictedFps) / maxCeiling) * 100 : 0;
+    const primaryGap = clamp(maxCeiling > 0 ? ((maxCeiling - predictedFps) / maxCeiling) * 100 : 0, 0, thresholds.maxGap);
     const limiter = cpuCeiling < gpuCeiling ? "CPU" : "GPU";
 
     const cpuGap = clamp(cpuCeiling < gpuCeiling ? primaryGap : 0, 0, thresholds.maxGap);

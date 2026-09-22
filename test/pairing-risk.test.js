@@ -86,6 +86,15 @@ function testCpuLimitedPairing() {
   assert(!result.balanced && result.state.label === "High", "CPU-limited pairing is classified from its primary gap");
 }
 
+function testExtremePairingUsesConsistentCappedGap() {
+  installFixtures(20, 100);
+  const result = computeResult(inputs());
+  const cpuScore = result.scores.find((item) => item.key === "CPU");
+
+  assert(result.primaryGap === 65, "extreme pairing headline is capped at the maximum gap");
+  assert(cpuScore.value === result.primaryGap, "extreme pairing headline matches the limiting component bar");
+}
+
 function testSecondaryWarningsDoNotDrivePairingDecisions() {
   installFixtures(70, 100);
   const result = computeResult(inputs());
@@ -102,6 +111,7 @@ function testSecondaryWarningsDoNotDrivePairingDecisions() {
 
 testMatchedPairIgnoresSecondaryPressure();
 testCpuLimitedPairing();
+testExtremePairingUsesConsistentCappedGap();
 testSecondaryWarningsDoNotDrivePairingDecisions();
 
 delete global.__BOTTLENECK_TEST_API__;
