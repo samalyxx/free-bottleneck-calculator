@@ -1,8 +1,13 @@
 [
   {
     "loc": "https://freebottleneckcalculator.com/blog/",
-    "lastmod": "2026-07-06",
+    "lastmod": "2026-09-22",
     "priority": "0.9"
+  },
+  {
+    "loc": "https://freebottleneckcalculator.com/blog/does-storage-affect-fps/",
+    "lastmod": "2026-09-22",
+    "priority": "0.85"
   },
   {
     "loc": "https://freebottleneckcalculator.com/blog/do-bottleneck-calculators-work/",
