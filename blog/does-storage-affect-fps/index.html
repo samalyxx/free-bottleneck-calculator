@@ -89,15 +89,7 @@
       "name": "Does an SSD increase FPS in games?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Usually not by much. An SSD mainly improves loading, installation, updates, and asset streaming. It can reduce storage-related hitches in some games, but the CPU and GPU usually determine sustained frame rate."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is NVMe better than a SATA SSD for gaming?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "NVMe offers much higher storage throughput, but many games do not turn that difference into higher average FPS. It is most useful for storage-heavy workflows, supported modern loading paths, large transfers, and reducing waits where storage is actually the limit."
+        "text": "Usually not in a meaningful or consistent way. An SSD primarily reduces waiting and can help storage-bound asset streaming. It will not normally raise the sustained rendering rate of a scene that is limited by the CPU or GPU."
       }
     },
     {
@@ -105,23 +97,31 @@
       "name": "Can an HDD cause stuttering?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. A game that needs data faster than an HDD can supply it may hitch or show delayed assets while streaming. Similar symptoms can also come from shader compilation, insufficient RAM or VRAM, CPU limits, drivers, or network problems."
+        "text": "Yes, if the game needs assets faster than the HDD supplies them. But shader compilation, RAM or VRAM pressure, CPU limits, drivers, thermals, and network issues can look similar. Confirm the timing with monitoring rather than assuming every hitch is storage-related."
       }
     },
     {
       "@type": "Question",
-      "name": "Do games need NVMe for DirectStorage?",
+      "name": "Is NVMe worth it over SATA for gaming?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DirectStorage can work across storage devices, but Microsoft recommends NVMe to maximize I/O performance and see its most significant improvements. The game must also implement DirectStorage; buying an NVMe drive does not add the feature to every game."
+        "text": "It can be, especially in a new build, when prices are close, or when you also move large files. For a PC already loading games from a healthy SATA SSD, do not expect NVMe alone to transform average FPS. Capacity may be the more valuable upgrade."
       }
     },
     {
       "@type": "Question",
-      "name": "Should I upgrade storage or my CPU or GPU first?",
+      "name": "Does DirectStorage require an NVMe SSD?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Upgrade storage first if games are on an HDD, loading is the main frustration, or monitoring points to disk-related hitches. If sustained FPS is below target after loading finishes, investigate the CPU and GPU before assuming a faster drive will help."
+        "text": "Microsoft says DirectStorage can provide benefits across storage devices, while recommending NVMe to maximize I/O performance and obtain the most significant improvements. The game must implement DirectStorage, and the outcome still depends on its workload and the rest of the system."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I put Windows or games on the faster drive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put the operating system and frequently used applications on an SSD. For games, prioritize the titles with long loads or active asset streaming. If capacity is limited, older or less storage-sensitive games can remain on a secondary drive."
       }
     }
   ]
