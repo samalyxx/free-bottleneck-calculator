@@ -23,6 +23,16 @@ function read(p) {
   return fs.readFileSync(path.join(root, p), "utf8");
 }
 
+function decodeHtml(text) {
+  return text
+    .replace(/<[^>]+>/g, "")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
 function walkHtml(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -73,6 +83,23 @@ function testSitemap() {
   assert(!xml.includes("example.com"), "sitemap no example.com");
   const count = (xml.match(/<loc>/g) || []).length;
   assert(count >= 20, `sitemap URL count (${count})`);
+
+  const entries = new Map(
+    [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>[\s\S]*?<\/url>/g)]
+      .map((match) => [match[1], match[2]])
+  );
+  const dataDate = read("data/config.js").match(/dataLastReviewed:\s*"([^"]+)"/)?.[1];
+  assert(entries.get(`${SITE}/`) === dataDate, "homepage lastmod retains data review date");
+  for (const [url, lastmod] of entries) {
+    if (url.startsWith(`${SITE}/build/`)) {
+      assert(lastmod === dataDate, `${url} retains data review date`);
+    }
+  }
+  const storageDate = read("content/blog/does-storage-affect-fps.md").match(/^date:\s*(\d{4}-\d{2}-\d{2})$/m)?.[1];
+  assert(
+    entries.get(`${SITE}/blog/does-storage-affect-fps/`) === storageDate,
+    "storage article lastmod matches source metadata"
+  );
 }
 
 function testBlogPages() {
@@ -90,6 +117,18 @@ function testBlogPages() {
   const samplePost = fs.readFileSync(path.join(blogDir, "what-is-cpu-bottleneck/index.html"), "utf8");
   assert(samplePost.includes('meta name="keywords"'), "blog post has keywords meta");
   assert(samplePost.includes("FAQPage"), "blog post has FAQPage JSON-LD");
+
+  const storagePost = fs.readFileSync(path.join(blogDir, "does-storage-affect-fps/index.html"), "utf8");
+  const jsonLd = [...storagePost.matchAll(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+  const faqSchema = jsonLd.find((item) => item["@type"] === "FAQPage");
+  const visibleFaq = storagePost.match(/<h2>FAQ<\/h2>([\s\S]*?)<\/div>\s*<div class="mt-8/)?.[1] || "";
+  const visibleItems = [...visibleFaq.matchAll(/<h3>([\s\S]*?)<\/h3>\s*<p>([\s\S]*?)<\/p>/g)]
+    .map((match) => ({ question: decodeHtml(match[1]), answer: decodeHtml(match[2]) }));
+  const schemaItems = (faqSchema?.mainEntity || [])
+    .map((item) => ({ question: item.name, answer: item.acceptedAnswer?.text }));
+  assert(visibleItems.length === 5, "storage article has five visible FAQ items");
+  assert(JSON.stringify(schemaItems) === JSON.stringify(visibleItems), "storage article FAQ schema matches visible FAQ");
 }
 
 function testBuildPages() {

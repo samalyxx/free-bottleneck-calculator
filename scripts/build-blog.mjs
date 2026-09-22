@@ -197,7 +197,11 @@ fs.mkdirSync(blogOut, { recursive: true });
 const posts = readPosts();
 fs.writeFileSync(path.join(blogOut, "index.html"), renderBlogIndex(posts));
 
-const sitemapEntries = [{ loc: `${SITE_URL}/blog/`, lastmod: today, priority: "0.9" }];
+const sitemapEntries = [{
+  loc: `${SITE_URL}/blog/`,
+  lastmod: posts[0]?.date || today,
+  priority: "0.9"
+}];
 
 for (const post of posts) {
   const dir = path.join(blogOut, post.slug);
